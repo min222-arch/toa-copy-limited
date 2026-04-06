@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ToaCopy Job System</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+body{
+  font-family:Segoe UI,sans-serif;
+  background:linear-gradient(120deg,#0B2C5F,#1E3A8A);
+  margin:0;
+  padding:30px;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+}
+
+.job-select{
+  width:100%;
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:20px;
+}
+
+.job-form{
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  display:none;
+  gap:12px;
+  margin-top:20px;
+}
+
+.job-form input,
+.job-form textarea,
+.job-form select{
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #ddd;
+  width:100%;
+}
+
+.job-form button{
+  background:#F97316;
+  color:white;
+  border:none;
+  padding:12px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.job-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border-bottom:1px solid #eee;
+  margin-bottom:15px;
+  padding-bottom:10px;
+}
+
+.job-header img{
+  height:50px;
+}
+
+.tracker{
+  background:white;
+  padding:25px;
+  border-radius:20px;
+  margin-top:40px;
+}
+
+.status{
+  margin-top:15px;
+  padding:15px;
+  border-radius:10px;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2 style="color:white;text-align:center;">ToaCopy Digital Job System</h2>
+
+<select id="jobType" onchange="showForm()" class="job-select">
+<option value="">Select Job Type</option>
+<option value="jersey">Jersey Job Card</option>
+<option value="branding">Branding Job Card</option>
+<option value="design">Design Job Card</option>
+</select>
+
+<!-- JERSEY -->
+<form id="jersey" class="job-form">
+<div class="job-header">
+<img src="DESIGNS_BY_TOACOPY_final__1__page-0001-removebg-preview.png">
+<div><b>Jersey Job Card</b></div>
+</div>
+
+<input id="trackingNo1" readonly>
+<input type="date">
+<input type="datetime-local">
+<input placeholder="Client Name">
+<input placeholder="Special Font">
+<textarea placeholder="Details"></textarea>
+<input placeholder="Front Office Signature">
+<input placeholder="Printing Office Signature">
+
+<button type="button" onclick="downloadPDF(this)">Download PDF</button>
+<button type="button" onclick="generateInvoice(this)">Generate Invoice</button>
+</form>
+
+<!-- BRANDING -->
+<form id="branding" class="job-form">
+<div class="job-header">
+<img src="DESIGNS_BY_TOACOPY_final__1__page-0001-removebg-preview.png">
+<div><b>Branding Job Card</b></div>
+</div>
+
+<input id="trackingNo2" readonly>
+<input type="date">
+<input type="datetime-local">
+<input placeholder="Client Name">
+<input placeholder="Special Font">
+<textarea placeholder="Branding Details"></textarea>
+<input placeholder="Front Office Signature">
+<input placeholder="Printing Office Signature">
+
+<button type="button" onclick="downloadPDF(this)">Download PDF</button>
+<button type="button" onclick="generateInvoice(this)">Generate Invoice</button>
+</form>
+
+<!-- DESIGN -->
+<form id="design" class="job-form">
+<div class="job-header">
+<img src="DESIGNS_BY_TOACOPY_final__1__page-0001-removebg-preview.png">
+<div><b>Design Job Card</b></div>
+</div>
+
+<input id="trackingNo3" readonly>
+<input type="date">
+<input type="time">
+<input placeholder="Phone Number">
+
+<select>
+<option>Banner</option>
+<option>Sticker</option>
+<option>Flyer</option>
+<option>Ecard</option>
+<option>Brochure</option>
+<option>Mugs</option>
+<option>Business Cards</option>
+<option>Eulogy</option>
+<option>Receipt / Invoice</option>
+<option>Logo</option>
+</select>
+
+<textarea placeholder="Design Details"></textarea>
+<input placeholder="Client Name">
+<input placeholder="WhatsApp">
+<input placeholder="Total Amount">
+<input placeholder="Amount Paid">
+<input placeholder="Balance">
+<input placeholder="Handled By Signature">
+
+<button type="button" onclick="downloadPDF(this)">Download PDF</button>
+<button type="button" onclick="generateInvoice(this)">Generate Invoice</button>
+</form>
+
+<!-- TRACKER -->
+<div class="tracker">
+<h3>Track Your Job</h3>
+<input id="trackInput" placeholder="Enter Tracking Number">
+<button onclick="checkStatus()">Check Status</button>
+<div id="statusBox" class="status"></div>
+</div>
+
+</div>
+
+<script>
+function showForm(){
+  document.querySelectorAll(".job-form").forEach(f=>f.style.display="none");
+  const type=document.getElementById("jobType").value;
+  if(type) document.getElementById(type).style.display="grid";
+}
+
+/* TRACKING */
+function gen(){
+  const d=new Date();
+  return "TOA-"+d.getFullYear().toString().slice(2)+
+  (d.getMonth()+1).toString().padStart(2,'0')+
+  d.getDate().toString().padStart(2,'0')+"-"+
+  Math.floor(1000+Math.random()*9000);
+}
+window.onload=()=>{
+  trackingNo1.value=gen();
+  trackingNo2.value=gen();
+  trackingNo3.value=gen();
+};
+
+/* PDF */
+async function downloadPDF(btn){
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF();
+  const form=btn.closest("form");
+  let y=15;
+  doc.text("ToaCopy Job Card",15,y);
+  y+=10;
+  form.querySelectorAll("input,textarea,select").forEach(i=>{
+    if(i.value){
+      doc.text(i.value,15,y);
+      y+=7;
+    }
+  });
+  doc.save("JobCard.pdf");
+}
+
+/* TRACK STATUS DEMO */
+function checkStatus(){
+  const t=document.getElementById("trackInput").value;
+  const box=document.getElementById("statusBox");
+  const jobs={
+    "TOA-240601-1234":"Design in Progress",
+    "TOA-240601-5678":"Printing",
+    "TOA-240601-9012":"Ready"
+  };
+  box.style.display="block";
+  box.innerHTML=jobs[t] ? "Status: "+jobs[t] : "Tracking not found";
+}
+async function generateInvoice(btn){
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const form = btn.closest("form");
+  const inputs = form.querySelectorAll("input, textarea, select");
+
+  let client="Client";
+  let total="0";
+  let paid="0";
+  let balance="0";
+  let tracking="";
+
+  inputs.forEach(i=>{
+    const val=i.value?.trim();
+    if(!val) return;
+
+    const name=(i.placeholder||"").toLowerCase();
+
+    if(name.includes("client")) client=val;
+    if(name.includes("total")) total=val;
+    if(name.includes("paid")) paid=val;
+    if(name.includes("balance")) balance=val;
+    if(i.id?.includes("tracking")) tracking=val;
+  });
+
+  /* HEADER */
+  doc.setFontSize(18);
+  doc.text("Designs by ToaCopy", 15, 20);
+
+  doc.setFontSize(11);
+  doc.text("Official Invoice", 15, 28);
+
+  doc.line(15,32,195,32);
+
+  /* CLIENT INFO */
+  let y=45;
+  doc.setFontSize(11);
+  doc.text(`Client: ${client}`,15,y);
+  y+=7;
+  doc.text(`Tracking No: ${tracking}`,15,y);
+  y+=10;
+
+  /* BILLING TABLE */
+  doc.text("Description",15,y);
+  doc.text("Amount",160,y);
+  y+=4;
+  doc.line(15,y,195,y);
+  y+=8;
+
+  doc.text("Production / Design Service",15,y);
+  doc.text(`KES ${total}`,160,y);
+  y+=12;
+
+  doc.text(`Amount Paid: KES ${paid}`,15,y);
+  y+=8;
+  doc.text(`Balance: KES ${balance}`,15,y);
+
+  y+=18;
+  doc.line(15,y,195,y);
+  y+=10;
+
+  doc.setFontSize(10);
+  doc.text("Thank you for choosing Designs by ToaCopy.",15,y);
+
+  doc.save(`Invoice-${tracking || Date.now()}.pdf`);
+}
+</script>
+
+</body>
+</html>

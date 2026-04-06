@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Designs by ToaCopy</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 
 /* ---------- GLOBAL ---------- */
@@ -509,27 +508,12 @@ iframe{
   to{opacity:1; transform:translateX(0);}
 }
 
+/* MOBILE */
 @media(max-width:800px){
-
   .hero{
     flex-direction:column;
-    padding:30px 20px;
-    gap:20px;
+    text-align:center;
   }
-
-  .hero-text h1{
-    font-size:28px;
-  }
-
-  .hero-text p{
-    font-size:15px;
-  }
-
-  .hero-slider{
-    height:200px;
-    width:100%;
-  }
-
 }
 body{
   margin:0;
@@ -556,7 +540,7 @@ body::before{
 
 /* CHANGE IMAGES HERE */
 @keyframes bgSlider{
-  0%{background-image:url("https://i.pinimg.com/1200x/5c/2e/d5/5c2ed55e92bd78449e2a0cc257d832a0.jpg");}
+  0%{background-image:url("https://i.pinimg.com/736x/c5/65/f1/c565f17c5b9fe232d2357798db191e27.jpg");}
   25%{background-image:url("https://i.pinimg.com/1200x/71/c9/c6/71c9c69f0ab3970c9f0fc6a5ddbf3728.jpg");}
   50%{background-image:url("https://i.pinimg.com/736x/b0/ff/45/b0ff4573151479a6c882ff4d1b3aee05.jpg");}
   75%{background-image:url("https://i.pinimg.com/1200x/34/60/21/346021eb47500ba1180747563d6dffaf.jpg");}
@@ -773,40 +757,32 @@ body::before{
   color:white;
 }
 /* DROPDOWN */
-/* DROPDOWN WRAPPER */
 .dropdown{
   position:relative;
+  display:inline-block;
 }
 
-/* MENU */
 .dropdown-menu{
   position:absolute;
-  top:100%;
+  top:120%;
   left:0;
-
-  min-width:220px;
   background:white;
-
+  padding:10px 0;
   border-radius:12px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.2);
-
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
   opacity:0;
   transform:translateY(10px);
   pointer-events:none;
-
   transition:0.3s;
-  z-index:999; /* 🔥 IMPORTANT */
 }
 
-/* LINKS */
 .dropdown-menu a{
   display:block;
-  padding:12px 18px;
+  padding:10px 20px;
+  white-space:nowrap;
   color:#0B2C5F;
-  text-decoration:none;
 }
 
-/* HOVER SHOW */
 .dropdown:hover .dropdown-menu{
   opacity:1;
   transform:translateY(0);
@@ -1270,529 +1246,794 @@ body::before{
   50%{opacity:1;}
   100%{opacity:0.7;}
 }
-/* FILTER BUTTONS */
-.filters{
-  text-align:center;
-  margin:30px 0;
+.product-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+margin-top:40px;
 }
 
-.filters button{
-  background:rgba(255,255,255,0.1);
-  border:none;
-  color:white;
-  padding:10px 18px;
-  margin:5px;
-  border-radius:25px;
-  cursor:pointer;
-  transition:0.3s;
+.product-card{
+
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+
 }
 
-.filters button.active,
-.filters button:hover{
-  background:#F97316;
+.product-card img{
+width:100%;
+border-radius:10px;
+margin-bottom:15px;
 }
 
-/* FEATURED PROJECT */
-.featured{
-  display:flex;
-  gap:30px;
-  margin:40px 0;
-  background:white;
-  border-radius:25px;
-  overflow:hidden;
-  box-shadow:0 20px 50px rgba(0,0,0,0.3);
+.price{
+font-size:20px;
+font-weight:bold;
+color:#1e3a8a;
 }
 
-.featured img{
-  width:50%;
-  object-fit:cover;
+.product-card button{
+
+background:#f97316;
+border:none;
+padding:12px 20px;
+color:white;
+border-radius:8px;
+margin-top:10px;
+
+}
+.business-section{
+
+background:white;
+
+padding:60px;
+
+margin:70px auto;
+
+border-radius:25px;
+
+box-shadow:0 25px 60px rgba(0,0,0,0.25);
+
 }
 
-.featured-text{
-  padding:30px;
+.business-intro{
+
+text-align:center;
+
+max-width:800px;
+
+margin:auto;
+
+margin-bottom:40px;
+
+font-size:18px;
+
 }
 
-.featured-text h3{
-  color:#1e3a8a;
-  font-size:28px;
+.business-layout{
+
+display:flex;
+
+gap:40px;
+
+align-items:center;
+
+flex-wrap:wrap;
+
+margin-bottom:50px;
+
 }
 
-/* GRID */
-.portfolio-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:25px;
+.card-preview img{
+
+width:320px;
+
+border-radius:15px;
+
+box-shadow:0 20px 45px rgba(0,0,0,0.3);
+
 }
 
-/* ITEM */
-.portfolio-item{
-  position:relative;
-  overflow:hidden;
-  border-radius:18px;
-  transition:0.4s;
-  opacity:1;
+.card-options{
+
+flex:1;
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
 }
 
-.portfolio-item.hide{
-  opacity:0;
-  transform:scale(0.8);
-  pointer-events:none;
+.card-options select,
+
+.card-options input{
+
+padding:10px;
+
+border-radius:8px;
+
+border:1px solid #ccc;
+
 }
 
-/* IMAGE */
-.portfolio-item img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:0.5s;
+.features{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+
+gap:25px;
+
+margin-top:40px;
+
 }
 
-.portfolio-item:hover img{
-  transform:scale(1.1);
+.feature{
+
+background:#f9fafb;
+
+padding:25px;
+
+border-radius:15px;
+
+text-align:center;
+
 }
 
-/* OVERLAY */
-.overlay{
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  padding:20px;
-  background:linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-  color:white;
-  transform:translateY(100%);
-  transition:0.4s;
+.feature i{
+
+font-size:28px;
+
+color:#f97316;
+
+margin-bottom:10px;
+
 }
 
-.portfolio-item:hover .overlay{
-  transform:translateY(0);
+.specs{
+
+margin-top:50px;
+
+}
+
+.design-guide{
+
+margin-top:40px;
+
+background:#f3f4f6;
+
+padding:30px;
+
+border-radius:15px;
+
+}
+.card-options textarea{
+
+padding:12px;
+border-radius:8px;
+border:1px solid #ccc;
+font-family:Segoe UI;
+resize:vertical;
+
+}
+
+.card-options label{
+
+font-weight:600;
+margin-top:8px;
+
+}
+#customSizeBox{
+
+background:#f3f4f6;
+padding:15px;
+border-radius:10px;
+margin-top:10px;
+
+}
+
+#customSizeBox input{
+
+width:100%;
+padding:10px;
+margin-top:5px;
+border-radius:8px;
+border:1px solid #ccc;
+
+}
+.designer{
+
+background:white;
+padding:60px;
+margin:80px auto;
+border-radius:25px;
+box-shadow:0 20px 60px rgba(0,0,0,0.2);
+
+}
+
+.designer-layout{
+
+display:flex;
+gap:40px;
+flex-wrap:wrap;
+
+}
+
+.design-tools{
+
+flex:1;
+display:grid;
+gap:10px;
+
+}
+
+.design-tools input{
+
+padding:10px;
+border-radius:8px;
+border:1px solid #ccc;
+
+}
+
+.design-canvas{
+
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+
+}
+
+.card-canvas{
+
+width:420px;
+height:240px;
+
+background:linear-gradient(120deg,#1e3a8a,#2563eb);
+
+border-radius:14px;
+
+position:relative;
+
+display:flex;
+align-items:center;
+
+padding:25px;
+
+overflow:hidden;
+
+box-shadow:0 20px 60px rgba(0,0,0,0.35);
+
+color:white;
+
+}
+
+/* LOGO */
+
+.logo{
+
+width:70px;
+margin-right:20px;
+
 }
 
 /* TEXT */
-.overlay h3{ margin:0; }
-.overlay p{ font-size:14px; opacity:0.8; }
-.overlay span{
-  display:inline-block;
-  background:#F97316;
-  padding:4px 10px;
-  border-radius:15px;
-  font-size:12px;
-  margin-top:6px;
-}
-.overlay small{
-  display:block;
-  margin-top:8px;
-  font-style:italic;
-  opacity:0.7;
-}
 
-/* MOBILE */
-@media(max-width:800px){
-  .featured{
-    flex-direction:column;
-  }
+.card-text{
 
-  .featured img{
-    width:100%;
-  }
-}
-/* MASONRY */
-.masonry{
-  display:flex;
-  gap:25px;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  padding-bottom:10px;
-}
-
-/* hide scrollbar (premium feel) */
-.masonry::-webkit-scrollbar{
-  display:none;
-}
-@media(max-width:900px){
-  .masonry{ column-count:2; }
-}
-@media(max-width:600px){
-  .masonry{ column-count:1; }
-}
-
-/* ITEM */
-.item{
-  position:relative;
-  margin-bottom:20px;
-  overflow:hidden;
-  border-radius:20px;
-  cursor:pointer;
-  transform:translateY(40px);
-  opacity:0;
-  transition:0.6s;
-}
-
-/* reveal */
-.reveal.active .item{
-  transform:translateY(0);
-  opacity:1;
-}
-
-/* IMAGE */
-.item img{
-  width:100%;
-  display:block;
-  border-radius:20px;
-  transition:0.6s;
-}
-
-/* DEPTH EFFECT */
-.item:hover img{
-  transform:scale(1.1) rotate(1deg);
-  filter:brightness(0.85);
-}
-
-/* GLASS OVERLAY */
-.glass{
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  padding:20px;
-
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(12px);
-  border-top:1px solid rgba(255,255,255,0.2);
-
-  color:white;
-  transform:translateY(100%);
-  transition:0.4s;
-}
-
-.item:hover .glass{
-  transform:translateY(0);
-}
-
-/* TEXT */
-.glass h3{
-  margin:0;
-}
-.glass p{
-  font-size:14px;
-  opacity:0.8;
-}
-
-/* FILTER BUTTONS */
-.filters{
-  text-align:center;
-  margin:30px 0;
-}
-
-.filters button{
-  background:rgba(255,255,255,0.1);
-  border:none;
-  color:white;
-  padding:10px 18px;
-  margin:5px;
-  border-radius:30px;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.filters button.active,
-.filters button:hover{
-  background:#F97316;
-}
-#caseModal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.9);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-}
-
-.case-content{
-  background:white;
-  padding:30px;
-  border-radius:20px;
-  max-width:600px;
-  text-align:center;
-  animation:fadeIn 0.4s;
-}
-
-.case-content img{
-  width:100%;
-  border-radius:15px;
-}
-
-
-.item{
-  min-width:280px;
-  height:260px;
-  scroll-snap-align:center;
-  flex-shrink:0;
-
-  border-radius:20px;
-  overflow:hidden;
-  position:relative;
-  transition:0.4s;
-}
-.item{
-  transform-style:preserve-3d;
-  perspective:1000px;
-}
-
-.item:hover{
-  transform:scale(1.05);
-  box-shadow:0 30px 80px rgba(0,0,0,0.6);
-}
-.item::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at var(--x) var(--y),
-    rgba(255,255,255,0.25),
-    transparent 60%);
-  opacity:0;
-  transition:0.3s;
-}
-
-.item:hover::before{
-  opacity:1;
-}
-.item img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:0.5s;
-}
-
-.item:hover img{
-  transform:scale(1.1);
-}
-#storyViewer{
-  position:fixed;
-  inset:0;
-  background:black;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-  animation:fadeIn 0.5s ease;
-}
-
-.story-content{
-  display:flex;
-  width:90%;
-  max-width:1100px;
-  gap:40px;
-  align-items:center;
-}
-
-.story-content img{
-  width:60%;
-  border-radius:20px;
-  transform:scale(0.9);
-  animation:zoomIn 0.5s forwards;
-}
-
-.story-info{
-  color:white;
-}
-
-.closeStory{
-  position:absolute;
-  top:30px;
-  right:40px;
-  font-size:30px;
-  color:white;
-  cursor:pointer;
-}
-
-/* animations */
-@keyframes zoomIn{
-  to{transform:scale(1);}
-}
-#storyImg{
-  transition:opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-out{
-  opacity:0;
-  transform:scale(1.05);
-}
-
-.fade-in{
-  opacity:1;
-  transform:scale(1);
-}
-.scroll-text{
-  overflow:hidden;
-  white-space:nowrap;
-  width:100%;
-  margin-top:10px;
-}
-
-.scroll-text p{
-  display:inline-block;
-  padding-left:100%;
-
-  font-family:'Outfit', sans-serif;
-  font-size:20px;          /* slightly bigger */
-  font-weight:600;
-  letter-spacing:1px;
-
-  color:white;             /* PURE WHITE */
-
-  animation:scrollLeft 12s linear infinite;
-}
-
-/* smooth right → left */
-@keyframes scrollLeft{
-  0%{ transform:translateX(0); }
-  100%{ transform:translateX(-100%); }
-}
-/* HAMBURGER */
-.menu-toggle{
-  display:none;
-  font-size:26px;
-  cursor:pointer;
-}
-
-/* MOBILE NAV */
-@media(max-width:900px){
-
-  .menu-toggle{
-    display:block;
-  }
-
-  .nav-wrap{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-/* FIX LINKS ALIGNMENT */
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:18px;   /* 🔥 THIS FIXES COLLISION */
-}
-
-/* REMOVE THIS (IMPORTANT) */
-.nav-links a{
-  margin-left:0;
-}
-
-/* LINKS STYLE */
-.nav-links a{
-  text-decoration:none;
-  font-weight:600;
-  color:#0B2C5F;
-  position:relative;
-  font-size:14px;
-}
-
-/* SEARCH */
-.search-box{
-  margin-left:10px;
-}
-@media(max-width:600px){
-
-  .services{
-    grid-template-columns:1fr;
-  }
-
-  .card{
-    padding:20px;
-  }
+display:flex;
+flex-direction:column;
 
 }
-@media(max-width:900px){
 
-  .search-box{
-    width:100%;
-  }
+.card-text h3{
 
-  .search-box input{
-    width:100% !important;
-    opacity:1 !important;
-  }
+margin:0;
+font-size:22px;
 
 }
-@media(max-width:800px){
-  .hero-slider img:nth-child(n+4){
-    display:none;
-  }
+
+.card-text p{
+
+margin:3px 0;
+font-size:14px;
+
 }
-.tagline-animated{
-  text-align:center;
-  margin-top:20px;
-  font-family:'Outfit', sans-serif;
-  font-size:24px;
-  font-weight:600;
-  color:white;
+.particles{
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+top:0;
+left:0;
+
+pointer-events:none;
+
 }
 
-/* animated gradient */
-.tagline-animated span{
-  background:linear-gradient(90deg,#29A6D1,#F97316,#E11D74);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:shine 3s linear infinite;
+.particles::before,
+.particles::after{
+
+content:"";
+
+position:absolute;
+
+width:200%;
+height:200%;
+
+background:radial-gradient(circle, rgba(255,255,255,0.15) 2px, transparent 2px);
+
+background-size:40px 40px;
+
+animation:particlesMove 20s linear infinite;
+
+}
+
+.particles::after{
+
+animation-direction:reverse;
+opacity:0.6;
+
+}
+
+@keyframes particlesMove{
+
+from{
+
+transform:translate(0,0);
+
+}
+
+to{
+
+transform:translate(-200px,-200px);
+
+}
+
+}
+.card-canvas::after{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:linear-gradient(120deg, transparent, rgba(255,255,255,0.15), transparent);
+
+animation:shine 6s infinite;
+
 }
 
 @keyframes shine{
-  0%{background-position:0%}
-  100%{background-position:200%}
-}
-@media(max-width:900px){
 
-  .nav-links{
-    position:absolute;
-    top:70px;
-    left:0;
-    width:100%;
-    background:white;
-    flex-direction:column;
-    padding:20px;
-    gap:15px;
-    display:none;
-  }
+0%{transform:translateX(-100%)}
 
-  .nav-links.active{
-    display:flex;
-  }
+100%{transform:translateX(100%)}
 
 }
-/* ensure nav items stay in one line */
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:18px;
-  flex-wrap:nowrap; /* 🔥 prevents wrapping */
-}
+.business-hero{
 
-/* prevent dropdown pushing layout */
-.dropdown{
-  flex-shrink:0;
-}
-@media(max-width:900px){
+background:white;
 
-  .dropdown-menu{
-    position:static;
-    box-shadow:none;
-    opacity:1;
-    transform:none;
-    display:none;
-  }
+padding:70px 50px;
 
-  .dropdown-menu.show{
-    display:block;
-  }
+margin:60px auto;
+
+border-radius:25px;
+
+box-shadow:0 25px 60px rgba(0,0,0,0.25);
 
 }
-.dropdown-menu a:hover{
-  background:#f3f4f6;
-  padding-left:22px;
+
+.business-hero-layout{
+
+display:flex;
+
+align-items:center;
+
+gap:50px;
+
+flex-wrap:wrap;
+
+}
+
+/* LEFT IMAGE */
+
+.business-image img{
+
+width:420px;
+
+border-radius:15px;
+
+box-shadow:0 20px 45px rgba(0,0,0,0.3);
+
+transition:0.4s;
+
+}
+
+.business-image img:hover{
+
+transform:scale(1.05);
+
+}
+
+/* RIGHT CONTENT */
+
+.business-info{
+
+flex:1;
+
+}
+
+.business-info h1{
+
+font-size:40px;
+
+color:#0B2C5F;
+
+}
+
+.business-description{
+
+font-size:18px;
+
+margin:20px 0;
+
+line-height:1.6;
+
+}
+
+/* FEATURES */
+
+.business-features{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:15px;
+
+margin-top:20px;
+
+}
+
+.business-features div{
+
+background:#f3f4f6;
+
+padding:12px;
+
+border-radius:10px;
+
+font-weight:600;
+
+}
+
+.business-features i{
+
+color:#F97316;
+
+margin-right:8px;
+
+}
+
+/* BUTTON */
+
+.order-btn{
+
+margin-top:25px;
+
+padding:14px 30px;
+
+background:#f97316;
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+.order-btn:hover{
+
+background:#ea580c;
+
+transform:translateY(-2px);
+
+}
+.order-section{
+
+background:white;
+padding:60px;
+margin:60px auto;
+border-radius:25px;
+box-shadow:0 25px 60px rgba(0,0,0,0.25);
+
+}
+
+.order-grid{
+
+display:flex;
+gap:40px;
+flex-wrap:wrap;
+align-items:flex-start;
+
+}
+
+.order-form{
+
+flex:1;
+display:flex;
+flex-direction:column;
+gap:12px;
+
+}
+
+.order-form select,
+.order-form input,
+.order-form textarea{
+
+padding:10px;
+border-radius:8px;
+border:1px solid #ccc;
+
+}
+
+.order-preview{
+
+flex:1;
+text-align:center;
+
+}
+
+.order-preview img{
+
+width:100%;
+max-width:350px;
+border-radius:15px;
+box-shadow:0 20px 40px rgba(0,0,0,0.3);
+
+}
+.order-section{
+
+background:white;
+padding:70px;
+margin:60px auto;
+border-radius:25px;
+box-shadow:0 25px 60px rgba(0,0,0,0.25);
+
+}
+
+.order-layout{
+
+display:flex;
+gap:60px;
+align-items:center;
+justify-content:space-between;
+
+}
+
+.order-preview{
+
+flex:1;
+text-align:center;
+
+}
+
+.order-preview img{
+
+width:420px;
+border-radius:15px;
+box-shadow:0 20px 45px rgba(0,0,0,0.3);
+
+}
+
+.order-form{
+
+flex:1;
+display:flex;
+flex-direction:column;
+gap:12px;
+
+}
+
+.order-form select,
+.order-form input,
+.order-form textarea{
+
+padding:10px;
+border-radius:8px;
+border:1px solid #ccc;
+
+}
+#customQuantityBox{
+
+margin-top:10px;
+padding:15px;
+background:#f3f4f6;
+border-radius:10px;
+
+}
+
+#customQuantityBox input{
+
+width:100%;
+padding:10px;
+border-radius:8px;
+border:1px solid #ccc;
+
+}
+.preview-slider{
+
+position:relative;
+width:420px;
+height:260px;
+overflow:hidden;
+border-radius:15px;
+box-shadow:0 20px 45px rgba(0,0,0,0.3);
+
+}
+
+.preview-slider img{
+
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0;
+animation:previewSlide 12s infinite;
+
+}
+
+/* image delays */
+
+.preview-slider img:nth-child(1){ animation-delay:0s; }
+.preview-slider img:nth-child(2){ animation-delay:3s; }
+.preview-slider img:nth-child(3){ animation-delay:6s; }
+.preview-slider img:nth-child(4){ animation-delay:9s; }
+
+@keyframes previewSlide{
+
+0%{opacity:0; transform:scale(1.05);}
+10%{opacity:1;}
+25%{opacity:1;}
+35%{opacity:0;}
+100%{opacity:0;}
+
+}
+.order-layout{
+display:flex;
+gap:70px;
+align-items:flex-start;
+justify-content:cover;
+}
+
+.order-preview{
+flex:1;
+text-align:center;
+}
+
+.order-form{
+flex:1;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+.preview-slider{
+
+position:relative;
+
+width:420px;
+height:540px;
+
+overflow:hidden;
+
+border-radius:18px;
+
+background:white;
+
+box-shadow:
+0 10px 25px rgba(30,58,138,0.25),
+0 30px 60px rgba(30,58,138,0.35),
+0 60px 120px rgba(30,58,138,0.45);
+
+transition:all 0.4s ease;
+
+}
+.preview-slider::after{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:-100%;
+
+width:200%;
+height:100%;
+
+background:linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,0.25),
+transparent
+);
+
+animation:shine 6s infinite;
+
+}
+
+@keyframes shine{
+
+0%{transform:translateX(-100%)}
+100%{transform:translateX(100%)}
+
+}
+.preview-slider:hover{
+
+transform:translateY(-12px) scale(1.03);
+
+box-shadow:
+0 25px 50px rgba(249,115,22,0.35),
+0 50px 100px rgba(249,115,22,0.45),
+0 80px 160px rgba(249,115,22,0.55);
+
+}
+.preview-slider img{
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
+border-radius:18px;
+
+opacity:0;
+
+animation:previewSlide 12s infinite;
+
+}
+
+.preview-slider img:nth-child(1){animation-delay:0s;}
+.preview-slider img:nth-child(2){animation-delay:3s;}
+.preview-slider img:nth-child(3){animation-delay:6s;}
+.preview-slider img:nth-child(4){animation-delay:9s;}
+
+@keyframes previewSlide{
+0%{opacity:0}
+10%{opacity:1}
+25%{opacity:1}
+35%{opacity:0}
+100%{opacity:0}
+}
+.preview-slider:hover{
+
+transform:translateY(-12px) scale(1.03);
+
+box-shadow:
+0 25px 50px rgba(0,0,0,0.2),
+0 50px 100px rgba(0,0,0,0.25),
+0 80px 160px rgba(0,0,0,0.35);
+
 }
 </style>
 </head>
@@ -1802,34 +2043,29 @@ body::before{
 <nav id="navbar">
   <div class="container nav-wrap">
 
-    <!-- LOGO -->
-    <div class="logo-box">
-      <div class="logo-bg">
-        <img src="DESIGNS_BY_TOACOPY_final__1__page-0001-removebg-preview.png">
-      </div>
-    </div>
+   <div class="logo-box">
+  <div class="logo-bg">
+    <img src="DESIGNS_BY_TOACOPY_final__1__page-0001-removebg-preview.png">
+  </div>
+</div>
 
-    <!-- MENU BUTTON -->
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
-    <!-- LINKS -->
     <div class="nav-links">
 
       <a href="home.html" class="active">Home</a>
       <a href="about.html">About</a>
 
       <div class="dropdown">
-        <a href="#">Services ▾</a>
+        <a href="services.html">Services ▾</a>
         <div class="dropdown-menu">
-          <a href="businesscards.html">Business Cards</a>
-          <a href="t-shirt.html">T-Shirt Printing</a>
-          <a href="bannersposters.html">Banners & Posters</a>
-          <a href="corporatebranding.html">Corporate Branding</a>
+          <a href="#">Business Cards</a>
+          <a href="#">T-Shirt Printing</a>
+          <a href="#">Banners & Posters</a>
+          <a href="#">Corporate Branding</a>
         </div>
       </div>
 
       <a href="shop.html">Shop</a>
-      <a href="orderonline.html">Order</a>
+      <a href="C:\Users\Administrator\Documents\toa copy limited website\orderonline.html">Order Online</a>
       <a href="cart.html">Cart</a>
       <a href="contact.html">Contact</a>
 
@@ -1842,142 +2078,71 @@ body::before{
 
   </div>
 </nav>
-<div class="tagline-animated">
-  Building Brands 
-  <span>One Design at a Time</span>
-</div>
-<section class="creative-showcase">
-  <div class="edge-lights">
+</section>
+<section class="order-section container">
 
-  <div class="edge-light left">
-    <div class="bulb"></div>
-    <div class="beam"></div>
-  </div>
+<div class="order-layout">
 
-  <div class="edge-light right">
-    <div class="bulb"></div>
-    <div class="beam"></div>
-  </div>
+<!-- TSHIRT PREVIEW -->
+<div class="order-preview">
+
+<div class="preview-slider">
+<img src="https://i.pinimg.com/736x/a1/fe/dd/a1fedd8146db74ec5fd27bae6d8fa880.jpg">
+<img src="https://i.pinimg.com/1200x/6d/54/53/6d54536b350baa093e812a3fb6473d1a.jpg">
+<img src="https://i.pinimg.com/736x/82/ed/2c/82ed2c315e05f808c048ee793daa7e64.jpg">
+<img src="https://i.pinimg.com/736x/7e/bd/36/7ebd36bded8c24f836848ec738493ccd.jpg">
 
 </div>
-  <div class="container creative-grid">
-  <div class="hero-text">
-    <h1>Premium Printing & Branding Solutions</h1>
-    <p>Upload your design, order online, pay easily and track delivery.</p>
-    <button onclick="goShop()">Start Order</button>
-  </div>
-    <div class="creative-text">
-      <h2>We Don’t Just Print. We Build Brands.</h2>
-      <p>
-        From business cards to full corporate branding,
-        Designs by ToaCopy helps your business stand out
-        with premium quality and fast delivery.
-      </p>
-      <button onclick="goShop()">Start Your Order</button>
-    </div>
 
-   <div class="hero-slider">
-    <img src="https://i.pinimg.com/1200x/5c/2e/d5/5c2ed55e92bd78449e2a0cc257d832a0.jpg">
-    <img src="https://i.pinimg.com/736x/6f/5c/06/6f5c06d1399a04d7de2bbb23c410e2a1.jpg">
-    <img src="https://i.pinimg.com/736x/c8/94/41/c89441d2f96a1442e9db204a280aa0e4.jpg">
-    <img src="https://i.pinimg.com/736x/1a/2c/d4/1a2cd4284bd313079ae1f9ae41411902.jpg">
-    <img src="https://i.pinimg.com/736x/df/f5/de/dff5de813ee2752fd4da6c2f9158df29.jpg">
-  </div>
-  </div>
+</div>
+
+<!-- TSHIRT FORM -->
+<div class="order-form">
+
+<h2>Customize Your T-Shirt</h2>
+
+<label>T-Shirt Type</label>
+<select id="shirtType" onchange="calculateShirtPrice()">
+<option value="800">Cotton T-Shirt — KES 800</option>
+<option value="1200">Premium Cotton — KES 1200</option>
+<option value="1600">Hoodie Print — KES 1600</option>
+</select>
+
+<label>Size</label>
+<select id="shirtSize">
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+<option>XXL</option>
+</select>
+
+<label>Print Method</label>
+<select id="printMethod">
+<option>Vinyl Print</option>
+<option>DTF Print</option>
+<option>Screen Printing</option>
+<option>Heat Press</option>
+</select>
+
+<label>Quantity</label>
+<input type="number" id="shirtQty" placeholder="Enter quantity" oninput="calculateShirtPrice()">
+
+<h3>Total Price: <span id="shirtPrice">KES 0</span></h3>
+
+<label>Upload Design</label>
+<input type="file">
+
+<label>Special Instructions</label>
+<textarea placeholder="Example: Logo on front, text on back"></textarea>
+
+<button onclick="addShirt()">Add To Cart</button>
+
+</div>
+
+</div>
 
 </section>
-
-
-
-<section class="portfolio container reveal">
-
-  <h2 class="section-title">Our Recent Work</h2>
-  <div class="scroll-text">
-  <p>Crafted with precision. Designed for impact.</p>
-</div>
-
-  <!-- FILTER -->
-  <div class="filters">
- 
-  <button class="active" onclick="filterItems('all', event)">All</button>
-  <button onclick="filterItems('branding', event)">Branding</button>
-  <button onclick="filterItems('print', event)">Print</button>
-  <button onclick="filterItems('apparel', event)">Apparel</button>
-</div>
-  </div>
-
-  <!-- MASONRY GRID -->
-  <div class="masonry">
-
-   <div class="item branding" onclick="openStory(0)">
-      <img src="https://i.pinimg.com/736x/cb/3f/b4/cb3fb443eaf11650bc7eeb95d9865315.jpg">
-      <div class="glass">
-        <h3>Luxury Brand Identity</h3>
-        <p>Logo, colors, brand system</p>
-      </div>
-    </div>
-
-    <div class="item print" onclick="openStory(1)">
-      <img src="https://i.pinimg.com/736x/1a/2c/d4/1a2cd4284bd313079ae1f9ae41411902.jpg">
-      <div class="glass">
-        <h3>Premium Cards</h3>
-        <p>Matte + emboss finish</p>
-      </div>
-    </div>
-
-    <div class="item apparel" onclick="openStory(2)">
-      <img src="https://i.pinimg.com/736x/df/f5/de/dff5de813ee2752fd4da6c2f9158df29.jpg">
-      <div class="glass">
-        <h3>Streetwear Design</h3>
-        <p>Bold fashion branding</p>
-      </div>
-    </div>
-<div class="item apparel" onclick="openStory(3)">
-      <img src="https://i.pinimg.com/1200x/4e/96/15/4e961510aa048d050c206bc317632306.jpg">
-      <div class="glass">
-        <h3>Jacket Design</h3>
-        <p>Bold fashion branding</p>
-      </div>
-    </div>
-    <div class="item branding" onclick="openStory(4)">
-      <img src="https://i.pinimg.com/736x/8b/b8/e9/8bb8e9fbf67b3175005ac31dde4b5409.jpg">
-      <div class="glass">
-        <h3>Event Campaign</h3>
-        <p>High conversion visuals</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-<div id="storyViewer">
-  <span class="closeStory" onclick="closeStory()">✖</span>
-
-  <div class="story-content">
-    <img id="storyImg">
-    
-    <div class="story-info">
-      <h2 id="storyTitle"></h2>
-      <p id="storyDesc"></p>
-      <button onclick="goShop()">Order This Design</button>
-    </div>
-  </div>
-</div>
-<div id="caseModal">
-  <div class="case-content">
-    <span onclick="closeCase()">✖</span>
-    <img id="caseImg">
-    <h2 id="caseTitle"></h2>
-    <p id="caseDesc"></p>
-    <button onclick="goShop()">Order This Design</button>
-  </div>
-</div>
-
-<!-- IMAGE PREVIEW POPUP -->
-<div id="previewBox" onclick="closePreview()">
-  <img id="previewImg">
-</div>
-</div>
-
 <footer class="curved-footer">
 
   <div class="footer-inner">
@@ -2002,7 +2167,7 @@ body::before{
 
       <div class="info-item">
         <i class="fas fa-envelope"></i>
-        <span>info@tocopy.co.ke</span>
+        <span>toacopy254@gmail.com</span>
       </div>
 
     </div>
@@ -2031,13 +2196,12 @@ body::before{
     <a class="call-btn" href="tel:0713668390">Call 0713 668 390</a>
     <a class="call-btn" href="tel:0717385064">Call 0717 385 064</a>
 
-    <a class="mail-btn" href="info@toacopy.co.ke">Email Us</a>
+    <a class="mail-btn" href="mailto:toacopy254@gmail.com">Email Us</a>
 
   </div>
 
 </div>
   </div>
-
 
   <div class="footer-copy">
     © 2026 Designs by ToaCopy — Building brands one design at a time
@@ -2045,273 +2209,34 @@ body::before{
 
 </footer>
 <script>
-/* ================== NAVIGATION ================== */
-function goShop(){
-  window.location.href="shop.html";
+function calculateShirtPrice(){
+
+let price = parseInt(document.getElementById("shirtType").value) || 0
+let qty = parseInt(document.getElementById("shirtQty").value) || 0
+
+let total = price * qty
+
+document.getElementById("shirtPrice").innerText = "KES " + total
+
 }
 
-/* ================== REVEAL ON SCROLL ================== */
-window.addEventListener("scroll", function(){
-  let reveals=document.querySelectorAll(".reveal");
+function addShirt(){
 
-  reveals.forEach(el=>{
-    let windowHeight=window.innerHeight;
-    let elementTop=el.getBoundingClientRect().top;
+calculateShirtPrice()
 
-    if(elementTop < windowHeight - 120){
-      el.classList.add("active");
-    }
-  });
-});
+let price = parseInt(document.getElementById("shirtType").value)
+let qty = parseInt(document.getElementById("shirtQty").value)
 
-/* ================== NAVBAR SCROLL EFFECT ================== */
-window.addEventListener("scroll",()=>{
-  const nav=document.getElementById("navbar");
+let total = price * qty
 
-  if(window.scrollY>60){
-    nav.classList.add("scrolled","shrink");
-  }else{
-    nav.classList.remove("scrolled","shrink");
-  }
-});
+alert(
+"T-Shirt Added\n\nQuantity: " + qty +
+"\nTotal: KES " + total
+)
 
-/* ================== FILTER ================== */
-function filterItems(category, e){
-  let items=document.querySelectorAll(".item");
-
-  document.querySelectorAll(".filters button")
-    .forEach(b=>b.classList.remove("active"));
-
-  if(e) e.target.classList.add("active");
-
-  items.forEach(item=>{
-    if(category==="all" || item.classList.contains(category)){
-      item.style.display="block";
-    }else{
-      item.style.display="none";
-    }
-  });
 }
 
-/* ================== AUTO SCROLL (REELS) ================== */
-window.addEventListener("load", ()=>{
-  const reel=document.querySelector(".masonry");
-  if(!reel) return;
 
-  let autoScroll=setInterval(()=>{
-    reel.scrollBy({ left:300, behavior:"smooth" });
-  },3000);
-
-  reel.addEventListener("mouseenter",()=>clearInterval(autoScroll));
-
-  reel.addEventListener("mouseleave",()=>{
-    autoScroll=setInterval(()=>{
-      reel.scrollBy({ left:300, behavior:"smooth" });
-    },3000);
-  });
-
-  /* DRAG SCROLL */
-  let isDown=false, startX, scrollLeft;
-
-  reel.addEventListener("mousedown",(e)=>{
-    isDown=true;
-    startX=e.pageX - reel.offsetLeft;
-    scrollLeft=reel.scrollLeft;
-  });
-
-  reel.addEventListener("mouseleave",()=>isDown=false);
-  reel.addEventListener("mouseup",()=>isDown=false);
-
-  reel.addEventListener("mousemove",(e)=>{
-    if(!isDown) return;
-    e.preventDefault();
-
-    const x=e.pageX - reel.offsetLeft;
-    const walk=(x - startX)*2;
-    reel.scrollLeft=scrollLeft - walk;
-  });
-});
-
-/* ================== CARD EFFECTS ================== */
-document.querySelectorAll(".item").forEach(card=>{
-
-  /* 3D TILT */
-  card.addEventListener("mousemove",(e)=>{
-    let rect=card.getBoundingClientRect();
-    let x=e.clientX - rect.left;
-    let y=e.clientY - rect.top;
-
-    let rotateX=-(y - rect.height/2)/10;
-    let rotateY=(x - rect.width/2)/10;
-
-    card.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-
-    /* spotlight */
-    card.style.setProperty("--x", x+"px");
-    card.style.setProperty("--y", y+"px");
-  });
-
-  card.addEventListener("mouseleave",()=>{
-    card.style.transform="rotateX(0) rotateY(0) scale(1)";
-  });
-
-});
-
-/* ================== SOUND ================== */
-let sounds={
-  open:new Audio("https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"),
-  hover:new Audio("https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3")
-};
-
-function playSound(type){
-  let sound=sounds[type];
-  if(!sound) return;
-
-  sound.currentTime=0;
-  sound.volume=0.2;
-  sound.play();
-}
-
-/* hover sound */
-document.querySelectorAll(".item").forEach(item=>{
-  item.addEventListener("mouseenter",()=>playSound("hover"));
-});
-
-/* ================== STORIES ================== */
-let stories=[
-  {
-    images:[
-      "https://i.pinimg.com/736x/cb/3f/b4/cb3fb443eaf11650bc7eeb95d9865315.jpg",
-      "https://i.pinimg.com/736x/8b/b8/e9/8bb8e9fbf67b3175005ac31dde4b5409.jpg"
-    ],
-    title:"Luxury Brand Identity",
-    desc:"Full premium branding experience."
-  },
-  {
-    images:[
-      "https://i.pinimg.com/736x/1a/2c/d4/1a2cd4284bd313079ae1f9ae41411902.jpg",
-      "https://i.pinimg.com/736x/df/f5/de/dff5de813ee2752fd4da6c2f9158df29.jpg"
-    ],
-    title:"Print & Apparel",
-    desc:"High-end production quality."
-  },
-  {
-    images:[
-      "https://i.pinimg.com/1200x/4e/96/15/4e961510aa048d050c206bc317632306.jpg"
-    ],
-    title:"Jacket Design",
-    desc:"Premium apparel branding."
-  },
-  {
-    images:[
-      "https://i.pinimg.com/1200x/4e/96/15/4e961510aa048d050c206bc317632306.jpg"
-    ],
-    title:"Event Campaign",
-    desc:"High conversion visuals."
-  },
-
-  {
-  images:[
-    "https://i.pinimg.com/736x/8b/b8/e9/8bb8e9fbf67b3175005ac31dde4b5409.jpg"
-  ],
-  title:"Event Campaign",
-  desc:"High conversion visuals."
-}
-];
-
-/* ================== STORY PLAYER ================== */
-let storyIndex=0;
-let slideIndex=0;
-let storyInterval;
-
-function openStory(i){
-  if(i >= stories.length) return; // safety
-
-  storyIndex=i;
-  slideIndex=0;
-
-  document.getElementById("storyViewer").style.display="flex";
-
-  playSound("open");
-  startStory();
-}
-
-function startStory(){
-  clearInterval(storyInterval);
-
-  showSlide();
-
-  storyInterval=setInterval(()=>{
-    slideIndex++;
-
-    if(slideIndex >= stories[storyIndex].images.length){
-      slideIndex=0;
-    }
-
-    showSlide();
-  },3000);
-}
-
-function showSlide(){
-  let img=document.getElementById("storyImg");
-
-  img.classList.add("fade-out");
-
-  setTimeout(()=>{
-    let story=stories[storyIndex];
-
-    img.src=story.images[slideIndex];
-    document.getElementById("storyTitle").innerText=story.title;
-    document.getElementById("storyDesc").innerText=story.desc;
-
-    changeGradientBackground(story.images[slideIndex]);
-
-    img.classList.remove("fade-out");
-    img.classList.add("fade-in");
-  },300);
-}
-
-function closeStory(){
-  clearInterval(storyInterval);
-  document.getElementById("storyViewer").style.display="none";
-}
-
-/* ================== GRADIENT BACKGROUND ================== */
-function changeGradientBackground(imgUrl){
-  let img=new Image();
-  img.crossOrigin="Anonymous";
-  img.src=imgUrl;
-
-  img.onload=function(){
-    let canvas=document.createElement("canvas");
-    let ctx=canvas.getContext("2d");
-
-    canvas.width=img.width;
-    canvas.height=img.height;
-
-    ctx.drawImage(img,0,0);
-
-    let data=ctx.getImageData(0,0,1,1).data;
-
-    let c1=`rgb(${data[0]},${data[1]},${data[2]})`;
-    let c2=`rgb(${data[0]+40},${data[1]+20},${data[2]+60})`;
-
-    document.body.style.transition="background 1s ease";
-    document.body.style.background=`linear-gradient(120deg, ${c1}, ${c2})`;
-  };
-}
-function toggleMenu(){
-  document.querySelector(".nav-links").classList.toggle("active");
-}
-document.querySelectorAll(".dropdown > a").forEach(link=>{
-  link.addEventListener("click", function(e){
-    if(window.innerWidth < 900){
-      e.preventDefault();
-      this.nextElementSibling.classList.toggle("show");
-    }
-  });
-});
 </script>
-
 </body>
 </html>
