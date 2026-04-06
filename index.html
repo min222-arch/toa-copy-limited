@@ -1995,7 +1995,7 @@ body::before{
 <div id="previewBox" onclick="closePreview()">
   <img id="previewImg">
 </div>
-</div>
+
 
 <footer class="curved-footer">
 
@@ -2066,192 +2066,101 @@ body::before{
 <script>
 /* ================== NAVIGATION ================== */
 function goShop(){
-  window.location.href="shop.html";
+  window.location.href = "shop.html";
 }
 
-/* ================== REVEAL ON SCROLL ================== */
-window.addEventListener("scroll", function(){
-  let reveals=document.querySelectorAll(".reveal");
+/* ================== NAVBAR SCROLL ================== */
+window.addEventListener("scroll", ()=>{
+  const nav = document.getElementById("navbar");
 
-  reveals.forEach(el=>{
-    let windowHeight=window.innerHeight;
-    let elementTop=el.getBoundingClientRect().top;
-
-    if(elementTop < windowHeight - 120){
-      el.classList.add("active");
-    }
-  });
-});
-
-/* ================== NAVBAR SCROLL EFFECT ================== */
-window.addEventListener("scroll",()=>{
-  const nav=document.getElementById("navbar");
-
-  if(window.scrollY>60){
+  if(window.scrollY > 60){
     nav.classList.add("scrolled","shrink");
-  }else{
+  } else {
     nav.classList.remove("scrolled","shrink");
   }
 });
 
-/* ================== FILTER ================== */
-function filterItems(category, e){
-  let items=document.querySelectorAll(".item");
+/* ================== REVEAL (FIXED) ================== */
+function revealOnScroll(){
+  let reveals = document.querySelectorAll(".reveal");
 
-  document.querySelectorAll(".filters button")
-    .forEach(b=>b.classList.remove("active"));
+  reveals.forEach(el=>{
+    let windowHeight = window.innerHeight;
+    let elementTop = el.getBoundingClientRect().top;
 
-  if(e) e.target.classList.add("active");
-
-  items.forEach(item=>{
-    if(category==="all" || item.classList.contains(category)){
-      item.style.display="block";
-    }else{
-      item.style.display="none";
+    if(elementTop < windowHeight - 100){
+      el.classList.add("active");
     }
   });
 }
 
-/* ================== AUTO SCROLL (REELS) ================== */
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+
+/* ================== FILTER ================== */
+function filterItems(category, e){
+  let items = document.querySelectorAll(".item");
+
+  document.querySelectorAll(".filters button")
+    .forEach(btn => btn.classList.remove("active"));
+
+  if(e) e.target.classList.add("active");
+
+  items.forEach(item=>{
+    if(category === "all" || item.classList.contains(category)){
+      item.style.display = "block";
+    } else {
+      item.style.display = "none";
+    }
+  });
+}
+
+/* ================== AUTO SCROLL ================== */
 window.addEventListener("load", ()=>{
-  const reel=document.querySelector(".masonry");
+  const reel = document.querySelector(".masonry");
   if(!reel) return;
 
-  let autoScroll=setInterval(()=>{
+  let autoScroll = setInterval(()=>{
     reel.scrollBy({ left:300, behavior:"smooth" });
   },3000);
 
-  reel.addEventListener("mouseenter",()=>clearInterval(autoScroll));
+  reel.addEventListener("mouseenter", ()=>clearInterval(autoScroll));
 
-  reel.addEventListener("mouseleave",()=>{
-    autoScroll=setInterval(()=>{
+  reel.addEventListener("mouseleave", ()=>{
+    autoScroll = setInterval(()=>{
       reel.scrollBy({ left:300, behavior:"smooth" });
     },3000);
   });
-
-  /* DRAG SCROLL */
-  let isDown=false, startX, scrollLeft;
-
-  reel.addEventListener("mousedown",(e)=>{
-    isDown=true;
-    startX=e.pageX - reel.offsetLeft;
-    scrollLeft=reel.scrollLeft;
-  });
-
-  reel.addEventListener("mouseleave",()=>isDown=false);
-  reel.addEventListener("mouseup",()=>isDown=false);
-
-  reel.addEventListener("mousemove",(e)=>{
-    if(!isDown) return;
-    e.preventDefault();
-
-    const x=e.pageX - reel.offsetLeft;
-    const walk=(x - startX)*2;
-    reel.scrollLeft=scrollLeft - walk;
-  });
 });
 
-/* ================== CARD EFFECTS ================== */
-document.querySelectorAll(".item").forEach(card=>{
-
-  /* 3D TILT */
-  card.addEventListener("mousemove",(e)=>{
-    let rect=card.getBoundingClientRect();
-    let x=e.clientX - rect.left;
-    let y=e.clientY - rect.top;
-
-    let rotateX=-(y - rect.height/2)/10;
-    let rotateY=(x - rect.width/2)/10;
-
-    card.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-
-    /* spotlight */
-    card.style.setProperty("--x", x+"px");
-    card.style.setProperty("--y", y+"px");
-  });
-
-  card.addEventListener("mouseleave",()=>{
-    card.style.transform="rotateX(0) rotateY(0) scale(1)";
-  });
-
-});
-
-/* ================== SOUND ================== */
-let sounds={
-  open:new Audio("https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"),
-  hover:new Audio("https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3")
-};
-
-function playSound(type){
-  let sound=sounds[type];
-  if(!sound) return;
-
-  sound.currentTime=0;
-  sound.volume=0.2;
-  sound.play();
-}
-
-/* hover sound */
-document.querySelectorAll(".item").forEach(item=>{
-  item.addEventListener("mouseenter",()=>playSound("hover"));
-});
-
-/* ================== STORIES ================== */
-let stories=[
+/* ================== STORY SYSTEM ================== */
+let stories = [
   {
     images:[
-      "https://i.pinimg.com/736x/cb/3f/b4/cb3fb443eaf11650bc7eeb95d9865315.jpg",
-      "https://i.pinimg.com/736x/8b/b8/e9/8bb8e9fbf67b3175005ac31dde4b5409.jpg"
+      "https://i.pinimg.com/736x/cb/3f/b4/cb3fb443eaf11650bc7eeb95d9865315.jpg"
     ],
     title:"Luxury Brand Identity",
     desc:"Full premium branding experience."
   },
   {
     images:[
-      "https://i.pinimg.com/736x/1a/2c/d4/1a2cd4284bd313079ae1f9ae41411902.jpg",
-      "https://i.pinimg.com/736x/df/f5/de/dff5de813ee2752fd4da6c2f9158df29.jpg"
+      "https://i.pinimg.com/736x/1a/2c/d4/1a2cd4284bd313079ae1f9ae41411902.jpg"
     ],
-    title:"Print & Apparel",
+    title:"Premium Cards",
     desc:"High-end production quality."
-  },
-  {
-    images:[
-      "https://i.pinimg.com/1200x/4e/96/15/4e961510aa048d050c206bc317632306.jpg"
-    ],
-    title:"Jacket Design",
-    desc:"Premium apparel branding."
-  },
-  {
-    images:[
-      "https://i.pinimg.com/1200x/4e/96/15/4e961510aa048d050c206bc317632306.jpg"
-    ],
-    title:"Event Campaign",
-    desc:"High conversion visuals."
-  },
-
-  {
-  images:[
-    "https://i.pinimg.com/736x/8b/b8/e9/8bb8e9fbf67b3175005ac31dde4b5409.jpg"
-  ],
-  title:"Event Campaign",
-  desc:"High conversion visuals."
-}
+  }
 ];
 
-/* ================== STORY PLAYER ================== */
-let storyIndex=0;
-let slideIndex=0;
+let storyIndex = 0;
+let slideIndex = 0;
 let storyInterval;
 
 function openStory(i){
-  if(i >= stories.length) return; // safety
+  storyIndex = i;
+  slideIndex = 0;
 
-  storyIndex=i;
-  slideIndex=0;
+  document.getElementById("storyViewer").style.display = "flex";
 
-  document.getElementById("storyViewer").style.display="flex";
-
-  playSound("open");
   startStory();
 }
 
@@ -2260,11 +2169,11 @@ function startStory(){
 
   showSlide();
 
-  storyInterval=setInterval(()=>{
+  storyInterval = setInterval(()=>{
     slideIndex++;
 
     if(slideIndex >= stories[storyIndex].images.length){
-      slideIndex=0;
+      slideIndex = 0;
     }
 
     showSlide();
@@ -2272,74 +2181,28 @@ function startStory(){
 }
 
 function showSlide(){
-  let img=document.getElementById("storyImg");
+  let story = stories[storyIndex];
 
-  img.classList.add("fade-out");
-
-  setTimeout(()=>{
-    let story=stories[storyIndex];
-
-    img.src=story.images[slideIndex];
-    document.getElementById("storyTitle").innerText=story.title;
-    document.getElementById("storyDesc").innerText=story.desc;
-
-    changeGradientBackground(story.images[slideIndex]);
-
-    img.classList.remove("fade-out");
-    img.classList.add("fade-in");
-  },300);
+  document.getElementById("storyImg").src = story.images[slideIndex];
+  document.getElementById("storyTitle").innerText = story.title;
+  document.getElementById("storyDesc").innerText = story.desc;
 }
 
 function closeStory(){
   clearInterval(storyInterval);
-  document.getElementById("storyViewer").style.display="none";
+  document.getElementById("storyViewer").style.display = "none";
 }
 
-/* ================== GRADIENT BACKGROUND ================== */
-function changeGradientBackground(imgUrl){
-  let img=new Image();
-  img.crossOrigin="Anonymous";
-  img.src=imgUrl;
-
-  img.onload=function(){
-    let canvas=document.createElement("canvas");
-    let ctx=canvas.getContext("2d");
-
-    canvas.width=img.width;
-    canvas.height=img.height;
-
-    ctx.drawImage(img,0,0);
-
-    let data=ctx.getImageData(0,0,1,1).data;
-
-    let c1=`rgb(${data[0]},${data[1]},${data[2]})`;
-    let c2=`rgb(${data[0]+40},${data[1]+20},${data[2]+60})`;
-
-    document.body.style.transition="background 1s ease";
-    document.body.style.background=`linear-gradient(120deg, ${c1}, ${c2})`;
-  };
-}
+/* ================== HAMBURGER MENU (FINAL FIX) ================== */
 function toggleMenu(btn){
   let menu = document.querySelector(".nav-links");
 
   menu.classList.toggle("active");
 
-  /* change icon */
-  if(menu.classList.contains("active")){
-    btn.innerHTML = "✖";
-  } else {
-    btn.innerHTML = "☰";
-  }
+  btn.innerHTML = menu.classList.contains("active") ? "✖" : "☰";
 }
-document.querySelectorAll(".nav-links a").forEach(link=>{
-  link.addEventListener("click", ()=>{
-    let menu = document.querySelector(".nav-links");
-    let btn = document.querySelector(".menu-toggle");
 
-    menu.classList.remove("active");
-    btn.innerHTML = "☰";
-  });
-});
+/* AUTO CLOSE MENU */
 document.querySelectorAll(".nav-links a").forEach(link=>{
   link.addEventListener("click", ()=>{
     let menu = document.querySelector(".nav-links");
