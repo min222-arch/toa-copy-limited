@@ -1656,33 +1656,36 @@ body::before{
     display:block;
   }
 
-  .nav-links{
-    position:absolute;
-    top:70px;
-    right:0;
-    background:white;
-    width:100%;
-    flex-direction:column;
-    align-items:flex-start;
-    padding:20px;
-    gap:15px;
+  .nav-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
 
-    display:none;
-  }
+/* FIX LINKS ALIGNMENT */
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:18px;   /* 🔥 THIS FIXES COLLISION */
+}
 
-  .nav-links.active{
-    display:flex;
-  }
+/* REMOVE THIS (IMPORTANT) */
+.nav-links a{
+  margin-left:0;
+}
 
-  .nav-links a{
-    margin:0;
-    width:100%;
-  }
+/* LINKS STYLE */
+.nav-links a{
+  text-decoration:none;
+  font-weight:600;
+  color:#0B2C5F;
+  position:relative;
+  font-size:14px;
+}
 
-  .search-box input{
-    width:100% !important;
-    opacity:1 !important;
-  }
+/* SEARCH */
+.search-box{
+  margin-left:10px;
 }
 @media(max-width:600px){
 
@@ -1733,6 +1736,25 @@ body::before{
   0%{background-position:0%}
   100%{background-position:200%}
 }
+@media(max-width:900px){
+
+  .nav-links{
+    position:absolute;
+    top:70px;
+    left:0;
+    width:100%;
+    background:white;
+    flex-direction:column;
+    padding:20px;
+    gap:15px;
+    display:none;
+  }
+
+  .nav-links.active{
+    display:flex;
+  }
+
+}
 </style>
 </head>
 
@@ -1741,35 +1763,34 @@ body::before{
 <nav id="navbar">
   <div class="container nav-wrap">
 
-   <div class="logo-box">
-  <div class="logo-bg">
-    <img src="DESIGNS_BY_TOACOPY_final__1__page-0001-removebg-preview.png">
-  </div>
-</div>
-<div class="tagline-animated">
-  Building Brands 
-  <span>One Design at a Time</span>
-</div>
-  <div class="menu-toggle" onclick="toggleMenu()">
-  ☰
-</div>
+    <!-- LOGO -->
+    <div class="logo-box">
+      <div class="logo-bg">
+        <img src="DESIGNS_BY_TOACOPY_final__1__page-0001-removebg-preview.png">
+      </div>
+    </div>
+
+    <!-- MENU BUTTON -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <!-- LINKS -->
     <div class="nav-links">
 
       <a href="home.html" class="active">Home</a>
       <a href="about.html">About</a>
 
       <div class="dropdown">
-        <a href="services.html">Services ▾</a>
+        <a href="#">Services ▾</a>
         <div class="dropdown-menu">
           <a href="businesscards.html">Business Cards</a>
-          <a href="t-shirt.html"> T-Shirt Printing</a>
+          <a href="t-shirt.html">T-Shirt Printing</a>
           <a href="bannersposters.html">Banners & Posters</a>
           <a href="corporatebranding.html">Corporate Branding</a>
         </div>
       </div>
 
       <a href="shop.html">Shop</a>
-      <a href="C:\Users\Administrator\Documents\toa copy limited website\orderonline.html">Order Online</a>
+      <a href="orderonline.html">Order</a>
       <a href="cart.html">Cart</a>
       <a href="contact.html">Contact</a>
 
@@ -1782,7 +1803,10 @@ body::before{
 
   </div>
 </nav>
-
+<div class="tagline-animated">
+  Building Brands 
+  <span>One Design at a Time</span>
+</div>
 <section class="creative-showcase">
   <div class="edge-lights">
 
