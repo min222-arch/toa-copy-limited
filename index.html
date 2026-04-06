@@ -1717,7 +1717,7 @@ body::before{
   align-items:center;
   justify-content:space-between;
 }
-
+}
 /* FIX LINKS ALIGNMENT */
 .nav-links{
   display:flex;
@@ -1807,34 +1807,7 @@ body::before{
   0%{background-position:0%}
   100%{background-position:200%}
 }
-@media(max-width:900px){
 
-  .nav-links{
-    position:absolute;
-    top:70px;
-    left:0;
-    width:100%;
-    background:white;
-    flex-direction:column;
-    padding:20px;
-    gap:15px;
-    display:none;
-  }
-
-  .nav-links.active{
-    display:flex;
-  }
-
-}
-/* ensure nav items stay in one line */
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:18px;
-  flex-wrap:nowrap; /* 🔥 prevents wrapping */
-}
-
-/* prevent dropdown pushing layout */
 .dropdown{
   flex-shrink:0;
 }
@@ -1857,9 +1830,7 @@ body::before{
   background:#f3f4f6;
   padding-left:22px;
 }
-.nav-links{
-  transition:all 0.3s ease;
-}
+
 </style>
 </head>
 
