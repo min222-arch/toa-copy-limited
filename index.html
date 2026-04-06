@@ -1961,17 +1961,22 @@ body::before{
       <a href="home.html" class="active">Home</a>
       <a href="about.html">About</a>
 
-      <!-- DROPDOWN -->
       <div class="nav-dropdown">
-        <span onclick="toggleDropdown()">Services ▾</span>
 
-        <div class="nav-dropdown-menu">
-          <a href="businesscards.html">Business Cards</a>
-          <a href="t-shirt.html">T-Shirt Printing</a>
-          <a href="bannersposters.html">Banners & Posters</a>
-          <a href="corporatebranding.html">Corporate Branding</a>
-        </div>
-      </div>
+  <!-- MAIN CLICKABLE LINK -->
+  <a href="services.html" class="services-link" onclick="toggleDropdown(event)">
+    Services ▾
+  </a>
+
+  <!-- DROPDOWN -->
+  <div class="nav-dropdown-menu">
+    <a href="businesscards.html">Business Cards</a>
+    <a href="t-shirt.html">T-Shirt Printing</a>
+    <a href="bannersposters.html">Banners & Posters</a>
+    <a href="corporatebranding.html">Corporate Branding</a>
+  </div>
+
+</div>
 
       <a href="shop.html">Shop</a>
       <a href="orderonline.html">Order</a>
@@ -2347,9 +2352,11 @@ function toggleNav(btn){
   btn.innerHTML = menu.classList.contains("active") ? "✖" : "☰";
 }
 
-/* dropdown for mobile */
-function toggleDropdown(){
-  let dropdown = document.querySelector(".nav-dropdown-menu");
+function toggleDropdown(e){
+  // prevent immediate navigation on first click (mobile)
+  e.preventDefault();
+
+  let dropdown = e.target.nextElementSibling;
 
   dropdown.style.display =
     dropdown.style.display === "block" ? "none" : "block";
