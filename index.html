@@ -37,21 +37,71 @@ background:linear-gradient(270deg,#1e3a8a,#6d28d9,#f97316);
   margin:auto;
 }
 
+/* ================= NAVBAR ================= */
 #navbar{
   position:sticky;
   top:0;
   z-index:1000;
   backdrop-filter:blur(10px);
-  background:rgba(255,255,255,0.75);
-  border-bottom:1px solid rgba(255,255,255,0.4);
-  transition:0.4s;
+  background:rgba(255,255,255,0.85);
 }
 
+/* layout */
 .nav-wrap{
   display:flex;
   justify-content:space-between;
   align-items:center;
   padding:12px 0;
+}
+
+/* LINKS (DESKTOP) */
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+/* LINKS STYLE */
+.nav-links a{
+  text-decoration:none;
+  font-weight:600;
+  color:#0B2C5F;
+}
+
+/* HAMBURGER */
+.menu-toggle{
+  display:none;
+  font-size:26px;
+  cursor:pointer;
+}
+
+/* ================= MOBILE FIX ================= */
+@media(max-width:900px){
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .nav-links{
+    position:absolute;
+    top:70px;
+    left:0;
+    width:100%;
+    background:white;
+
+    flex-direction:column;
+    align-items:flex-start;
+
+    padding:20px;
+    gap:15px;
+
+    display:none; /* 🔥 HIDDEN BY DEFAULT */
+  }
+
+  .nav-links.active{
+    display:flex; /* 🔥 SHOW WHEN CLICKED */
+  }
+
 }
 
 /* LOGO */
@@ -842,10 +892,7 @@ body::before{
   opacity:1;
   margin-right:10px;
 }
-.nav-links{
-  display:flex;
-  align-items:center;
-}
+
 /* WHITE LOGO BACKGROUND */
 .logo-bg{
   background:white;
