@@ -509,12 +509,27 @@ iframe{
   to{opacity:1; transform:translateX(0);}
 }
 
-/* MOBILE */
 @media(max-width:800px){
+
   .hero{
     flex-direction:column;
-    text-align:center;
+    padding:30px 20px;
+    gap:20px;
   }
+
+  .hero-text h1{
+    font-size:28px;
+  }
+
+  .hero-text p{
+    font-size:15px;
+  }
+
+  .hero-slider{
+    height:200px;
+    width:100%;
+  }
+
 }
 body{
   margin:0;
@@ -1627,6 +1642,97 @@ body::before{
   0%{ transform:translateX(0); }
   100%{ transform:translateX(-100%); }
 }
+/* HAMBURGER */
+.menu-toggle{
+  display:none;
+  font-size:26px;
+  cursor:pointer;
+}
+
+/* MOBILE NAV */
+@media(max-width:900px){
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .nav-links{
+    position:absolute;
+    top:70px;
+    right:0;
+    background:white;
+    width:100%;
+    flex-direction:column;
+    align-items:flex-start;
+    padding:20px;
+    gap:15px;
+
+    display:none;
+  }
+
+  .nav-links.active{
+    display:flex;
+  }
+
+  .nav-links a{
+    margin:0;
+    width:100%;
+  }
+
+  .search-box input{
+    width:100% !important;
+    opacity:1 !important;
+  }
+}
+@media(max-width:600px){
+
+  .services{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    padding:20px;
+  }
+
+}
+@media(max-width:900px){
+
+  .search-box{
+    width:100%;
+  }
+
+  .search-box input{
+    width:100% !important;
+    opacity:1 !important;
+  }
+
+}
+@media(max-width:800px){
+  .hero-slider img:nth-child(n+4){
+    display:none;
+  }
+}
+.tagline-animated{
+  text-align:center;
+  margin-top:20px;
+  font-family:'Outfit', sans-serif;
+  font-size:24px;
+  font-weight:600;
+  color:white;
+}
+
+/* animated gradient */
+.tagline-animated span{
+  background:linear-gradient(90deg,#29A6D1,#F97316,#E11D74);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shine 3s linear infinite;
+}
+
+@keyframes shine{
+  0%{background-position:0%}
+  100%{background-position:200%}
+}
 </style>
 </head>
 
@@ -1640,7 +1746,10 @@ body::before{
     <img src="DESIGNS_BY_TOACOPY_final__1__page-0001-removebg-preview.png">
   </div>
 </div>
-
+<div class="tagline-animated">
+  Building Brands 
+  <span>One Design at a Time</span>
+</div>
     <div class="nav-links">
 
       <a href="home.html" class="active">Home</a>
@@ -1862,6 +1971,9 @@ body::before{
 
 </div>
   </div>
+  <div class="menu-toggle" onclick="toggleMenu()">
+  ☰
+</div>
 
   <div class="footer-copy">
     © 2026 Designs by ToaCopy — Building brands one design at a time
@@ -2123,6 +2235,9 @@ function changeGradientBackground(imgUrl){
     document.body.style.transition="background 1s ease";
     document.body.style.background=`linear-gradient(120deg, ${c1}, ${c2})`;
   };
+}
+function toggleMenu(){
+  document.querySelector(".nav-links").classList.toggle("active");
 }
 </script>
 
