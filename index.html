@@ -1658,38 +1658,26 @@ body::before{
   cursor:pointer;
 }
 
+/* MOBILE NAV */
 @media(max-width:900px){
 
   .menu-toggle{
     display:block;
   }
 
-  .nav-links{
-    position:absolute;
-    top:70px;
-    left:0;
-    width:100%;
-    background:white;
-
-    flex-direction:column;
-    align-items:flex-start;
-    padding:20px;
-
-    gap:15px;
-
-    display:none; /* 🔥 IMPORTANT */
-  }
-
-  .nav-links.active{
-    display:flex; /* 🔥 ONLY SHOW WHEN CLICKED */
-  }
-
-  .nav-links a{
-    margin:0;
-    width:100%;
-  }
-
+  .nav-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
+
+/* FIX LINKS ALIGNMENT */
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:18px;   /* 🔥 THIS FIXES COLLISION */
+}
+
 /* REMOVE THIS (IMPORTANT) */
 .nav-links a{
   margin-left:0;
@@ -2343,9 +2331,24 @@ function toggleMenu(btn){
     btn.innerHTML = "☰";
   }
 }
+document.querySelectorAll(".nav-links a").forEach(link=>{
+  link.addEventListener("click", ()=>{
+    let menu = document.querySelector(".nav-links");
+    let btn = document.querySelector(".menu-toggle");
 
-}
+    menu.classList.remove("active");
+    btn.innerHTML = "☰";
+  });
+});
+document.querySelectorAll(".nav-links a").forEach(link=>{
+  link.addEventListener("click", ()=>{
+    let menu = document.querySelector(".nav-links");
+    let btn = document.querySelector(".menu-toggle");
+
+    menu.classList.remove("active");
+    btn.innerHTML = "☰";
+  });
+});
 </script>
-
 </body>
 </html>
