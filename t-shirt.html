@@ -2035,50 +2035,173 @@ box-shadow:
 0 80px 160px rgba(0,0,0,0.35);
 
 }
+/* ===== PRINTWEAR SYSTEM ===== */
+
+.printwear{
+  background:white;
+  margin:60px auto;
+  padding:50px 0;
+  border-radius:25px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.2);
+}
+
+/* ALIGN WITH SITE */
+.printwear-container{
+  width:90%;
+  max-width:1100px;
+  margin:auto;
+}
+
+/* GRID */
+.printwear-grid{
+  display:flex;
+  gap:50px;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+/* LEFT */
+.printwear-preview{
+  flex:1;
+  min-width:280px;
+}
+
+/* RIGHT */
+.printwear-form{
+  flex:1;
+  min-width:280px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* SLIDER */
+.printwear-slider{
+  width:100%;
+  max-width:420px;
+  height:260px;
+  overflow:hidden;
+  border-radius:15px;
+  position:relative;
+}
+
+.printwear-slider img{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  animation:wearSlide 12s infinite;
+}
+
+.printwear-slider img:nth-child(1){animation-delay:0s;}
+.printwear-slider img:nth-child(2){animation-delay:3s;}
+.printwear-slider img:nth-child(3){animation-delay:6s;}
+.printwear-slider img:nth-child(4){animation-delay:9s;}
+
+@keyframes wearSlide{
+  0%{opacity:0}
+  10%{opacity:1}
+  25%{opacity:1}
+  35%{opacity:0}
+  100%{opacity:0}
+}
+
+/* FORM */
+.printwear-form input,
+.printwear-form select,
+.printwear-form textarea{
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  width:100%;
+}
+
+/* MOBILE FIX */
+@media(max-width:900px){
+
+  .printwear-grid{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .printwear-slider{
+    max-width:100%;
+    height:220px;
+  }
+
+  .printwear-form{
+    width:100%;
+  }
+
+}
 </style>
 </head>
 
 <body>
 
-<nav id="navbar">
-  <div class="container nav-wrap">
+<section class="printwear">
+  <div class="printwear-container">
 
-   <div class="logo-box">
-  <div class="logo-bg">
-    <img src="DESIGNS_BY_TOACOPY_final__1__page-0001-removebg-preview.png">
-  </div>
-</div>
+    <div class="printwear-grid">
 
-    <div class="nav-links">
+      <!-- PREVIEW -->
+      <div class="printwear-preview">
 
-      <a href="home.html" class="active">Home</a>
-      <a href="about.html">About</a>
-
-      <div class="dropdown">
-        <a href="services.html">Services ▾</a>
-        <div class="dropdown-menu">
-          <a href="#">Business Cards</a>
-          <a href="#">T-Shirt Printing</a>
-          <a href="#">Banners & Posters</a>
-          <a href="#">Corporate Branding</a>
+        <div class="printwear-slider">
+          <img src="https://i.pinimg.com/736x/a1/fe/dd/a1fedd8146db74ec5fd27bae6d8fa880.jpg">
+          <img src="https://i.pinimg.com/1200x/6d/54/53/6d54536b350baa093e812a3fb6473d1a.jpg">
+          <img src="https://i.pinimg.com/736x/82/ed/2c/82ed2c315e05f808c048ee793daa7e64.jpg">
+          <img src="https://i.pinimg.com/736x/7e/bd/36/7ebd36bded8c24f836848ec738493ccd.jpg">
         </div>
+
       </div>
 
-      <a href="shop.html">Shop</a>
-      <a href="C:\Users\Administrator\Documents\toa copy limited website\orderonline.html">Order Online</a>
-      <a href="cart.html">Cart</a>
-      <a href="contact.html">Contact</a>
+      <!-- FORM -->
+      <div class="printwear-form">
 
-      <div class="search-box">
-        <input type="text" placeholder="Search...">
-        <i class="fa fa-search"></i>
+        <h2>Customize Your T-Shirt</h2>
+
+        <label>T-Shirt Type</label>
+        <select id="shirtType" onchange="calculateShirtPrice()">
+          <option value="800">Cotton — KES 800</option>
+          <option value="1200">Premium — KES 1200</option>
+          <option value="1600">Hoodie — KES 1600</option>
+        </select>
+
+        <label>Size</label>
+        <select>
+          <option>S</option><option>M</option><option>L</option>
+          <option>XL</option><option>XXL</option>
+        </select>
+
+        <label>Print Method</label>
+        <select>
+          <option>Vinyl</option>
+          <option>DTF</option>
+          <option>Screen Print</option>
+        </select>
+
+        <label>Quantity</label>
+        <input type="number" id="shirtQty" oninput="calculateShirtPrice()">
+
+        <h3>Total: <span id="shirtPrice">KES 0</span></h3>
+
+        <label>Upload Design</label>
+        <input type="file">
+
+        <textarea placeholder="Instructions"></textarea>
+
+        <button onclick="addShirt()">Add To Cart</button>
+
       </div>
 
     </div>
 
   </div>
-</nav>
 </section>
+
 <section class="order-section container">
 
 <div class="order-layout">
