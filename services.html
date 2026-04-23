@@ -154,45 +154,63 @@ button:hover{
   box-shadow:0 12px 30px rgba(249,115,22,0.6);
 }
 
-/* ---------- SERVICES ---------- */
-.services{
+/.services-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:25px;
-  margin:50px auto;
 }
 
-.card{
-  background:white;
-  padding:30px;
-  border-radius:18px;
-  box-shadow:0 10px 35px rgba(0,0,0,0.2);
-  text-align:center;
-  transition:0.4s;
-  position:relative;
+/* 🔥 FORCE EQUAL HEIGHT */
+.service-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  
+  height:100%;              /* important */
+  min-height:420px;         /* 🔥 controls uniform size */
+  
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(12px);
+  border-radius:20px;
   overflow:hidden;
+  color:white;
+  transition:0.4s;
 }
 
-.card::before{
-  content:"";
-  position:absolute;
-  width:120%;
-  height:120%;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);
-  top:-50%;
-  left:-50%;
-  transform:rotate(25deg);
-  transition:0.6s;
+/* IMAGE FIX */
+.service-card img{
+  width:100%;
+  height:180px;             /* 🔥 fixed image height */
+  object-fit:cover;
 }
 
-.card:hover::before{
-  top:150%;
-  left:150%;
+/* CONTENT AREA */
+.service-content{
+  flex:1;                   /* 🔥 stretches evenly */
+  padding:15px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
 
-.card:hover{
-  transform:translateY(-8px) scale(1.02);
-  box-shadow:0 20px 50px rgba(0,0,0,0.3);
+/* TITLE FIX */
+.service-content h3{
+  min-height:50px;          /* 🔥 prevents uneven titles */
+}
+
+/* BUTTON AREA */
+.service-actions{
+  display:flex;
+  gap:10px;
+  padding:15px;
+}
+.service-content h3{
+  font-size:16px;
+  line-height:1.3;
+  overflow:hidden;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
 }
 
 /* ---------- FOOTER ---------- */
@@ -2465,6 +2483,18 @@ font-size:40px;
   cursor:pointer;
   font-size:20px;
 }
+.category-block h2{
+  color:white;
+  margin-bottom:15px;
+}
+
+.service-card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-top-left-radius:20px;
+  border-top-right-radius:20px;
+}
 </style>
 </head>
 
@@ -2548,199 +2578,16 @@ font-size:40px;
   </div>
 
 </section>
+<div style="margin-bottom:20px;">
+  <select id="categoryFilter" onchange="renderServices()">
+    <option value="all">All Categories</option>
+  </select>
+</div>
+
+<div id="servicesContainer"></div>
 <section class="services-section container">
 
-
-
-  <div class="services-grid">
-
-    <!-- 1 -->
-    <div class="service-card">
-      <div class="discount-badge">-20%</div>
-   
-<img src="https://i.pinimg.com/736x/1a/2c/d4/1a2cd4284bd313079ae1f9ae41411902.jpg" onclick="openPopup(
-  'Business Cards',
-  500,
-  600,
-  'https://i.pinimg.com/736x/1a/2c/d4/1a2cd4284bd313079ae1f9ae41411902.jpg',
-  'Premium matte, glossy & embossed cards.'
-)">
-      <div class="service-content">
-        <h3>Business Cards</h3>
-        <p>Premium matte, glossy & embossed cards.</p>
-
-        <div class="price-box">
-          <span class="old-price">KES 600</span>
-          <span class="new-price">KES 500</span>
-        </div>
-      </div>
-
-      <div class="service-actions">
-        <button onclick="addToCart('Business Cards',500)">Add to Cart</button>
-        <button onclick="orderWhatsApp('Business Cards')" class="whatsapp">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- 2 -->
-    <div class="service-card">
-      <div class="discount-badge">-15%</div>
-  
-<img src="https://i.pinimg.com/736x/cb/3f/b4/cb3fb443eaf11650bc7eeb95d9865315.jpg" onclick="openPopup(
-  'Banner & Posters',
- 1500,
-  1800,
-  'https://https://i.pinimg.com/736x/cb/3f/b4/cb3fb443eaf11650bc7eeb95d9865315.jpg',
-  'Large format printing for maximum visibility.'
-)">
-      <div class="service-content">
-        <h3>Banners & Posters</h3>
-        <p>Large format printing for maximum visibility.</p>
-
-        <div class="price-box">
-          <span class="old-price">KES 1,800</span>
-          <span class="new-price">KES 1,500</span>
-        </div>
-      </div>
-
-      <div class="service-actions">
-        <button onclick="addToCart('Banners',1500)">Add to Cart</button>
-        <button onclick="orderWhatsApp('Banners')" class="whatsapp">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- 3 -->
-    <div class="service-card">
-      <div class="discount-badge">-25%</div>
-      <img src="https://i.pinimg.com/736x/df/f5/de/dff5de813ee2752fd4da6c2f9158df29.jpg" onclick="openPopup(
-        'T-Shirt Printing'
-        1600,
-        1200,
-'https://i.pinimg.com/736x/df/f5/de/dff5de813ee2752fd4da6c2f9158df29.jpg',
-'Custom branded apparel for business & events'
-      )">
-
-      <div class="service-content">
-        <h3>T-Shirt Printing</h3>
-        <p>Custom branded apparel for businesses & events.</p>
-
-        <div class="price-box">
-          <span class="old-price">KES 1,600</span>
-          <span class="new-price">KES 1,200</span>
-        </div>
-      </div>
-
-      <div class="service-actions">
-        <button onclick="addToCart('T-Shirt Printing',1200)">Add to Cart</button>
-        <button onclick="orderWhatsApp('T-Shirt Printing')" class="whatsapp">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- 4 -->
-    <div class="service-card">
-      <div class="discount-badge">-18%</div>
-      <img src="https://i.pinimg.com/1200x/4e/96/15/4e961510aa048d050c206bc317632306.jpg">
-
-      <div class="service-content">
-        <h3>Corporate Branding</h3>
-        <p>Full company branding kits & identity design.</p>
-
-        <div class="price-box">
-          <span class="old-price">KES 6,100</span>
-          <span class="new-price">KES 5,000</span>
-        </div>
-      </div>
-
-      <div class="service-actions">
-        <button onclick="addToCart('Corporate Branding',5000)">Add to Cart</button>
-        <button onclick="orderWhatsApp('Corporate Branding')" class="whatsapp">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- 5 -->
-    <div class="service-card">
-      <div class="discount-badge">-12%</div>
-      <img src="https://i.pinimg.com/736x/8b/b8/e9/8bb8e9fbf67b3175005ac31dde4b5409.jpg">
-
-      <div class="service-content">
-        <h3>Stickers & Labels</h3>
-        <p>Custom labels for packaging & branding.</p>
-
-        <div class="price-box">
-          <span class="old-price">KES 900</span>
-          <span class="new-price">KES 800</span>
-        </div>
-      </div>
-
-      <div class="service-actions">
-        <button onclick="addToCart('Stickers',800)">Add to Cart</button>
-        <button onclick="orderWhatsApp('Stickers')" class="whatsapp">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- 6 -->
-    <div class="service-card">
-      <div class="discount-badge">-10%</div>
-      <img src="https://i.pinimg.com/736x/71/c9/c6/71c9c69f0ab3970c9f0fc6a5ddbf3728.jpg">
-
-      <div class="service-content">
-        <h3>Flyers & Brochures</h3>
-        <p>High-converting marketing materials.</p>
-
-        <div class="price-box">
-          <span class="old-price">KES 700</span>
-          <span class="new-price">KES 600</span>
-        </div>
-      </div>
-
-      <div class="service-actions">
-        <button onclick="addToCart('Flyers',600)">Add to Cart</button>
-        <button onclick="orderWhatsApp('Flyers')" class="whatsapp">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- 7 -->
-    <div class="service-card">
-      <div class="discount-badge">-22%</div>
-      <img src="https://i.pinimg.com/736x/b0/ff/45/b0ff4573151479a6c882ff4d1b3aee05.jpg">
-
-      <div class="service-content">
-        <h3>Large Format Printing</h3>
-        <p>Billboards, signage & outdoor advertising.</p>
-
-        <div class="price-box">
-          <span class="old-price">KES 3,200</span>
-          <span class="new-price">KES 2,500</span>
-        </div>
-      </div>
-
-      <div class="service-actions">
-        <button onclick="addToCart('Large Format',2500)">Add to Cart</button>
-        <button onclick="orderWhatsApp('Large Format')" class="whatsapp">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- 8 -->
-    <div class="service-card">
-      <div class="discount-badge">-30%</div>
-      <img src="https://i.pinimg.com/736x/34/60/21/346021eb47500ba1180747563d6dffaf.jpg">
-
-      <div class="service-content">
-        <h3>Packaging Design</h3>
-        <p>Professional product packaging solutions.</p>
-
-        <div class="price-box">
-          <span class="old-price">KES 2,900</span>
-          <span class="new-price">KES 2,000</span>
-        </div>
-      </div>
-
-      <div class="service-actions">
-        <button onclick="addToCart('Packaging',2000)">Add to Cart</button>
-        <button onclick="orderWhatsApp('Packaging')" class="whatsapp">WhatsApp</button>
-      </div>
-    </div>
-
-  </div>
+  <div id="servicesContainer"></div>
 
 </section>
 <!-- FLOATING CART -->
@@ -2852,6 +2699,122 @@ font-size:40px;
 
 </footer>
 <script>
+ const servicesData = [
+  {
+    category: "Large Format Printing",
+    items: [
+      {
+        name: "Banner Printing (per m²)",
+        price: "450 (10m+ = 400)",
+        image: "https://i.pinimg.com/736x/1a/2c/d4/1a2cd4284bd313079ae1f9ae41411902.jpg"
+      },
+      {
+        name: "Sticker Printing (per m²)",
+        price: "450",
+        image: "https://i.pinimg.com/736x/8b/b8/e9/8bb8e9fbf67b3175005ac31dde4b5409.jpg"
+      },
+      {
+        name: "Roll-Up Banner (Narrow Base)",
+        price: "4000 - 4500",
+        image: "https://i.pinimg.com/736x/cb/3f/b4/cb3fb443eaf11650bc7eeb95d9865315.jpg"
+      },
+      {
+        name: "Teardrop Banner",
+        price: "13500 - 15500",
+        image: "https://i.pinimg.com/736x/34/60/21/346021eb47500ba1180747563d6dffaf.jpg"
+      }
+    ]
+  },
+{
+  category: "Photocopy & Printing",
+  items: [
+    { name: "Photocopy (B&W)", price: "10", image: "https://i.pinimg.com/736x/71/c9/c6/71c9c69f0ab3970c9f0fc6a5ddbf3728.jpg" },
+    { name: "Printing B&W (A4)", price: "10", image: "https://i.pinimg.com/736x/b0/ff/45/b0ff4573151479a6c882ff4d1b3aee05.jpg" },
+    { name: "Printing Color (A4)", price: "20", image: "https://i.pinimg.com/736x/df/f5/de/dff5de813ee2752fd4da6c2f9158df29.jpg" },
+
+    { name: "Scanning A4", price: "20", image: "https://i.pinimg.com/736x/8b/b8/e9/8bb8e9fbf67b3175005ac31dde4b5409.jpg" },
+    { name: "Scanning A3", price: "30", image: "https://i.pinimg.com/736x/cb/3f/b4/cb3fb443eaf11650bc7eeb95d9865315.jpg" },
+
+    { name: "Passport Photos (2 pcs)", price: "50", image: "https://i.pinimg.com/736x/34/60/21/346021eb47500ba1180747563d6dffaf.jpg" },
+    { name: "Passport Photos (4 pcs)", price: "100", image: "https://i.pinimg.com/736x/34/60/21/346021eb47500ba1180747563d6dffaf.jpg" },
+    { name: "Passport Photos (8 pcs)", price: "150", image: "https://i.pinimg.com/736x/34/60/21/346021eb47500ba1180747563d6dffaf.jpg" },
+
+    { name: "Printing A3 B&W", price: "30", image: "https://i.pinimg.com/736x/1a/2c/d4/1a2cd4284bd313079ae1f9ae41411902.jpg" },
+    { name: "Printing A3 Color", price: "40", image: "https://i.pinimg.com/736x/1a/2c/d4/1a2cd4284bd313079ae1f9ae41411902.jpg" },
+
+    { name: "Binding (Tape)", price: "50", image: "https://i.pinimg.com/736x/8b/b8/e9/8bb8e9fbf67b3175005ac31dde4b5409.jpg" },
+    { name: "Binding (Spiral)", price: "70", image: "https://i.pinimg.com/736x/8b/b8/e9/8bb8e9fbf67b3175005ac31dde4b5409.jpg" },
+
+    { name: "Certificate Printing (Embossed Paper)", price: "50", image: "https://i.pinimg.com/736x/b0/ff/45/b0ff4573151479a6c882ff4d1b3aee05.jpg" },
+    { name: "Certificate Printing (Ivory Paper)", price: "70", image: "https://i.pinimg.com/736x/b0/ff/45/b0ff4573151479a6c882ff4d1b3aee05.jpg" },
+    { name: "Certificate Printing (Special Paper)", price: "100", image: "https://i.pinimg.com/736x/b0/ff/45/b0ff4573151479a6c882ff4d1b3aee05.jpg" },
+
+    { name: "Photo Printing 4R", price: "30 (Bulk = 20)", image: "https://i.pinimg.com/736x/df/f5/de/dff5de813ee2752fd4da6c2f9158df29.jpg" }
+  ]
+}
+];
+function renderServices(){
+
+  const container = document.getElementById("servicesContainer");
+  const selectedCategory = document.getElementById("categoryFilter").value;
+  const searchValue = document.getElementById("searchInput").value.toLowerCase();
+
+  container.innerHTML = "";
+
+  servicesData.forEach(category => {
+
+    // FILTER CATEGORY
+    if(selectedCategory !== "all" && selectedCategory !== category.category) return;
+
+    let categoryHTML = "";
+    let hasVisibleItems = false;
+
+    category.items.forEach(service => {
+
+      // SEARCH FILTER
+      if(!service.name.toLowerCase().includes(searchValue)) return;
+
+      hasVisibleItems = true;
+
+      categoryHTML += `
+        <div class="service-card">
+          <img src="${service.image}">
+
+          <div class="service-content">
+            <h3>${service.name}</h3>
+
+            <div class="price-box">
+              <span class="new-price">KES ${service.price}</span>
+            </div>
+          </div>
+
+          <div class="service-actions">
+            <button onclick="addToCart('${service.name}', '${service.price}')">
+              Add to Cart
+            </button>
+            <button onclick="orderWhatsApp('${service.name}')" class="whatsapp">
+              WhatsApp
+            </button>
+          </div>
+        </div>
+      `;
+    });
+
+    // ONLY SHOW CATEGORY IF IT HAS RESULTS
+    if(hasVisibleItems){
+      container.innerHTML += `
+        <div class="category-block">
+          <h2>${category.category}</h2>
+          <div class="services-grid">
+            ${categoryHTML}
+          </div>
+        </div>
+      `;
+    }
+
+  });
+
+}
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -2871,7 +2834,10 @@ function updateCart(){
   cartItems.innerHTML = "";
 
   cart.forEach((item, index)=>{
-    total += item.price;
+   let num = parseInt(item.price);
+if(!isNaN(num)){
+  total += num;
+}
 
     cartItems.innerHTML += `
       <div class="cart-item">
@@ -2910,20 +2876,8 @@ function checkoutWhatsApp(){
   window.open(`https://wa.me/254713668390?text=${msg}`);
 }
 
-updateCart();
 function searchServices(){
-  let input = document.getElementById("searchInput").value.toLowerCase();
-  let cards = document.querySelectorAll(".service-card");
-
-  cards.forEach(card=>{
-    let text = card.innerText.toLowerCase();
-
-    if(text.includes(input)){
-      card.style.display = "block";
-    }else{
-      card.style.display = "none";
-    }
-  });
+  renderServices(); // re-render with filter applied
 }
 function openPopup(name, price, oldPrice, img, desc){
   document.getElementById("productPopup").style.display = "flex";
@@ -2942,6 +2896,18 @@ function openPopup(name, price, oldPrice, img, desc){
 function closePopup(){
   document.getElementById("productPopup").style.display = "none";
 }
+function loadCategories(){
+  const filter = document.getElementById("categoryFilter");
+
+  servicesData.forEach(cat => {
+    let option = document.createElement("option");
+    option.value = cat.category;
+    option.textContent = cat.category;
+    filter.appendChild(option);
+  });
+}
+
+loadCategories();
 </script>
 
 </body>
