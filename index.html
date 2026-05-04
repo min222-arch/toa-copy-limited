@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 
-/* ---------- GLOBAL ---------- */
+/* ---------- GLOBAL ----.------ */
 body{
   margin:0;
   font-family:Segoe UI, sans-serif;
@@ -2371,6 +2371,91 @@ body::before{
   </div>
 
 </footer>
+<!-- CHAT BUTTON -->
+<div id="chatToggle" onclick="toggleChat()">💬</div>
+
+<!-- CHAT BOX -->
+<div id="chatContainer">
+  <div id="chatHeader">Support</div>
+  <div id="chatMessages"></div>
+
+  <div id="chatInputArea">
+    <input id="chatInput" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<style>
+#chatToggle{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#1e3a8a;
+  color:white;
+  padding:14px;
+  border-radius:50%;
+  cursor:pointer;
+  z-index:9999;
+}
+
+#chatContainer{
+  position:fixed;
+  bottom:80px;
+  right:20px;
+  width:300px;
+  height:380px;
+  background:white;
+  border-radius:15px;
+  display:none;
+  flex-direction:column;
+  box-shadow:0 15px 40px rgba(0,0,0,0.3);
+  overflow:hidden;
+  z-index:9999;
+}
+
+#chatHeader{
+  background:#1e3a8a;
+  color:white;
+  padding:12px;
+  font-weight:bold;
+}
+
+#chatMessages{
+  flex:1;
+  padding:10px;
+  overflow-y:auto;
+  font-size:14px;
+}
+
+.msg{
+  margin:6px 0;
+  padding:8px 10px;
+  border-radius:10px;
+  max-width:75%;
+}
+
+.user{ background:#f97316; color:white; margin-left:auto; }
+.admin{ background:#e5e7eb; }
+
+#chatInputArea{
+  display:flex;
+}
+
+#chatInput{
+  flex:1;
+  border:none;
+  padding:10px;
+}
+
+#chatInputArea button{
+  border:none;
+  background:#f97316;
+  color:white;
+  padding:10px;
+}
+</style>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
 <script>
 /* ================== NAVIGATION ================== */
 function goShop(){
@@ -2537,6 +2622,56 @@ function toggleDropdown(e){
   dropdown.style.display =
     dropdown.style.display === "block" ? "none" : "block";
 }
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDN-gEFPiPj9Hf0Q4mhj7Oke9H2z-tYNv0",
+  authDomain: "toacopylive-chat.firebaseapp.com",
+  databaseURL: "https://toacopylive-chat-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "toacopylive-chat",
+  storageBucket: "toacopylive-chat.firebasestorage.app",
+  messagingSenderId: "214717228918",
+  appId: "1:214717228918:web:2e478b92c6420277edbc57"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+let userId = localStorage.getItem("chatUserId");
+
+if(!userId){
+  userId = "user_" + Math.random().toString(36).substr(2,9);
+  localStorage.setItem("chatUserId", userId);
+}
+
+function toggleChat(){
+  let box = document.getElementById("chatContainer");
+  box.style.display = box.style.display === "flex" ? "none" : "flex";
+}
+
+function sendMessage(){
+  let input = document.getElementById("chatInput");
+  let text = input.value.trim();
+  if(!text) return;
+
+  db.ref("supportChats/"+userId).push({
+    sender:"user",
+    text:text,
+    time:Date.now()
+  });
+
+  input.value="";
+}
+
+db.ref("supportChats/"+userId).on("child_added", snapshot=>{
+  let msg = snapshot.val();
+
+  let div = document.createElement("div");
+  div.classList.add("msg");
+  div.classList.add(msg.sender === "user" ? "user" : "admin");
+  div.textContent = msg.text;
+
+  document.getElementById("chatMessages").appendChild(div);
+});
 </script>
 </body>
 </html>
