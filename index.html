@@ -2107,7 +2107,11 @@ body::before{
   box-shadow:0 25px 60px rgba(0,0,0,0.2);
   position:relative; /* needed for lights */
 }
-
+#tawkchat-container,
+iframe[title="chat widget"]{
+  z-index:999999 !important;
+  position:fixed !important;
+}
 </style>
 </head>
 
@@ -2371,91 +2375,11 @@ body::before{
   </div>
 
 </footer>
-<!-- CHAT BUTTON -->
-<div id="chatToggle" onclick="toggleChat()">💬</div>
 
-<!-- CHAT BOX -->
-<div id="chatContainer">
-  <div id="chatHeader">Support</div>
-  <div id="chatMessages"></div>
 
-  <div id="chatInputArea">
-    <input id="chatInput" placeholder="Type a message..." />
-    <button onclick="sendMessage()">Send</button>
-  </div>
-</div>
 
-<style>
-#chatToggle{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#1e3a8a;
-  color:white;
-  padding:14px;
-  border-radius:50%;
-  cursor:pointer;
-  z-index:9999;
-}
-
-#chatContainer{
-  position:fixed;
-  bottom:80px;
-  right:20px;
-  width:300px;
-  height:380px;
-  background:white;
-  border-radius:15px;
-  display:none;
-  flex-direction:column;
-  box-shadow:0 15px 40px rgba(0,0,0,0.3);
-  overflow:hidden;
-  z-index:9999;
-}
-
-#chatHeader{
-  background:#1e3a8a;
-  color:white;
-  padding:12px;
-  font-weight:bold;
-}
-
-#chatMessages{
-  flex:1;
-  padding:10px;
-  overflow-y:auto;
-  font-size:14px;
-}
-
-.msg{
-  margin:6px 0;
-  padding:8px 10px;
-  border-radius:10px;
-  max-width:75%;
-}
-
-.user{ background:#f97316; color:white; margin-left:auto; }
-.admin{ background:#e5e7eb; }
-
-#chatInputArea{
-  display:flex;
-}
-
-#chatInput{
-  flex:1;
-  border:none;
-  padding:10px;
-}
-
-#chatInputArea button{
-  border:none;
-  background:#f97316;
-  color:white;
-  padding:10px;
-}
 </style>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
 <script>
 /* ================== NAVIGATION ================== */
 function goShop(){
@@ -2464,8 +2388,7 @@ function goShop(){
 
 /* ================== NAVBAR SCROLL ================== */
 window.addEventListener("scroll", ()=>{
-  const nav = document.getElementById("navbar");
-
+ const nav = document.getElementById("mainNavbar");
   if(window.scrollY > 60){
     nav.classList.add("scrolled","shrink");
   } else {
@@ -2622,56 +2545,38 @@ function toggleDropdown(e){
   dropdown.style.display =
     dropdown.style.display === "block" ? "none" : "block";
 }
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDN-gEFPiPj9Hf0Q4mhj7Oke9H2z-tYNv0",
-  authDomain: "toacopylive-chat.firebaseapp.com",
-  databaseURL: "https://toacopylive-chat-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "toacopylive-chat",
-  storageBucket: "toacopylive-chat.firebasestorage.app",
-  messagingSenderId: "214717228918",
-  appId: "1:214717228918:web:2e478b92c6420277edbc57"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-
-let userId = localStorage.getItem("chatUserId");
-
-if(!userId){
-  userId = "user_" + Math.random().toString(36).substr(2,9);
-  localStorage.setItem("chatUserId", userId);
-}
-
-function toggleChat(){
-  let box = document.getElementById("chatContainer");
-  box.style.display = box.style.display === "flex" ? "none" : "flex";
-}
-
-function sendMessage(){
-  let input = document.getElementById("chatInput");
-  let text = input.value.trim();
-  if(!text) return;
-
-  db.ref("supportChats/"+userId).push({
-    sender:"user",
-    text:text,
-    time:Date.now()
-  });
-
-  input.value="";
-}
-
-db.ref("supportChats/"+userId).on("child_added", snapshot=>{
-  let msg = snapshot.val();
-
-  let div = document.createElement("div");
-  div.classList.add("msg");
-  div.classList.add(msg.sender === "user" ? "user" : "admin");
-  div.textContent = msg.text;
-
-  document.getElementById("chatMessages").appendChild(div);
-});
 </script>
+<!-- your website content -->
+
+<!--Start of Tawk.to Script-->
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),
+s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/69fa7295dd30e51c30efd023/1jnt4v6cc';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
+window.addEventListener("scroll", ()=>{
+  const nav = document.getElementById("mainNavbar");
+
+  if(!nav) return; // prevents crash
+
+  if(window.scrollY > 60){
+    nav.classList.add("scrolled","shrink");
+  } else {
+    nav.classList.remove("scrolled","shrink");
+  }
+});
+
+</script>
+<!--End of Tawk.to Script-->
 </body>
 </html>
